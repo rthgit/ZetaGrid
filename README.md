@@ -1,23 +1,26 @@
-# 🌌 ZED.AI (25B)
+# 🌌 RTH-LM (25B)
+![RTH Logo](rth_logo.png)
+
 **The Fractal TCN Language Model**
 *(Powered by ZetaGrid Architecture)*
 
 [![License: Research](https://img.shields.io/badge/License-CC_BY_NC_4.0-red.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![Commercial: Contact Us](https://img.shields.io/badge/Commercial-Contact_Us-gold.svg)](mailto:commercial@rth-italia.com)
-[![Model Size: 25B](https://img.shields.io/badge/Model%20Size-25B-green.svg)](https://huggingface.co/rth-italia/zed-ai-25b)
+[![Commercial: Contact Us](https://img.shields.io/badge/Commercial-Contact_Us-gold.svg)](mailto:info@rthitalia.com)
+[![Model Size: 25B](https://img.shields.io/badge/Model%20Size-25B-green.svg)](https://huggingface.co/rth-italia/rth-lm-25b)
 [![Architecture: TCN](https://img.shields.io/badge/Architecture-Fractal_TCN-purple.svg)](https://arxiv.org/abs/1803.01271)
 [![Sustainability: Green AI](https://img.shields.io/badge/Energy-Eco_Friendly-brightgreen.svg)](https://github.com/rth-italia/cpu-da)
 
 ---
 
-## 🛑 Transformers are Dinosaurs. The Future is ZED.
+## 🛑 Transformers are Dinosaurs. The Future is RTH-LM.
 
-**ZED.AI 25B** is not just another LLM. It is a statement.
+**RTH-LM 25B** is not just another LLM. It is a statement.
 It proves that you **don't need trillions of tokens** or millions of dollars in energy to build intelligence.
 
 - **Built in 24 Hours.** We trained this 25B model from scratch in a single day.
 - **Trained on <2GB Data.** We deliberately restricted the pre-training dataset to just 1.5GB of high-quality text. Why? To prove that the **Architecture is King**. The model learns structure, syntax, and reasoning not by brute-force memorization, but by efficient architectural design.
-- **Green & Sustainable.** While Transformers burn forests of GPU energy, ZED.AI runs cool and efficient. It is the democratic, on-premise alternative.
+- **Green & Sustainable.** While Transformers burn forests of GPU energy, RTH-LM runs cool and efficient. It is the democratic, on-premise alternative.
+
 
 ---
 
