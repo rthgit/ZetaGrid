@@ -26,7 +26,7 @@ It proves that you **don't need trillions of tokens** or millions of dollars in 
 
 ## 🧬 The "Soul" Architecture (ZetaGrid)
 
-ZED.AI abandons the quadratic complexity of Attention for the linear efficiency of **Gated Causal Temporal Convolutional Networks (TCNs)**.
+RTH-LM abandons the quadratic complexity of Attention for the linear efficiency of **Gated Causal Temporal Convolutional Networks (TCNs)**.
 
 ### 1. The Frozen Genome (7GB)
 The backbone of the model is a static, compressed "Genome" (`zetagrid_25b_production.npy`). This DNA encodes the fundamental patterns of language processing. It is shared across all models.
@@ -53,13 +53,13 @@ We are building a future where:
 
 ## ⚖️ License & Commercialization
 
-**ZED.AI is Dual-Licensed:**
+**RTH-LM is Dual-Licensed:**
 
 ### 🎓 Research & Personal Use: **Free (CC BY-NC 4.0)**
-You are free to use, modify, and experiment with ZED.AI for non-commercial purposes. We encourage researchers to explore the TCN architecture.
+You are free to use, modify, and experiment with RTH-LM for non-commercial purposes. We encourage researchers to explore the TCN architecture.
 
 ### 💼 Commercial Use: **Paid License Required**
-If you want to use ZED.AI for commercial products, enterprise deployment, or generating revenue, you must obtain a commercial license from **RTH Italia**.
+If you want to use RTH-LM for commercial products, enterprise deployment, or generating revenue, you must obtain a commercial license from **RTH Italia**.
 Our architecture offers unparalleled cost savings for inference at scale—invest in the future, not the past.
 
 **[Contact Christian Quintino De Luca for Commercial Inquiries](mailto:info@rthitalia.com)**

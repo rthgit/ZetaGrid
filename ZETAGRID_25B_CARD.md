@@ -13,9 +13,17 @@ metrics:
 - loss
 ---
 
-# ZetaGrid 25B (Phase 2 Release) 🌌
+# 📇 Model Card: RTH-LM (25B)
 
-ZetaGrid 25B is a **Fractal TCN (Temporal Convolutional Network)** Language Model, designed for high-efficiency inference on CPU/Consumer Hardware and massive scalability on GPUs.
+## Model Details
+- **Name:** RTH-LM (25B)
+- **Architecture:** Fractal Gated Causal TCN (Temporal Convolutional Network)
+- **Parameters:** 25 Billion (Seed Model)
+- **Author:** Christian Quintino De Luca (RTH Italia)
+- **Release Date:** February 2026
+- **License:** CC BY-NC 4.0 for Research; Commercial license via RTH Italia.
+
+RTH-LM (25B) is a **Fractal TCN (Temporal Convolutional Network)** Language Model, designed for high-efficiency inference on CPU/Consumer Hardware and massive scalability on GPUs.
 
 Unlike Traditional Transformers, ZetaGrid uses a **Gated Causal TCN backbone** with **Fractal Scaling**, allowing it to model long-range dependencies with significantly lower memory overhead during inference.
 
