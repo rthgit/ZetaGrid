@@ -1,0 +1,19 @@
+# 🦙 Ollama Modelfile for RTH-LM (Fractal TCN)
+
+# 1. Point to the GGUF file we generated
+FROM ./rth_lm_25b_v1.gguf
+
+# 2. Set Parameters
+PARAMETER temperature 0.7
+PARAMETER top_k 40
+PARAMETER top_p 0.9
+
+# 3. Define the Prompt Template (Compatible with RTH-LM training)
+TEMPLATE """
+{{ .Prompt }}
+"""
+
+# 4. Deployment Note
+# IMPORTANT: This model requires the 'ZetaGrid TCN Patch' for llama.cpp/Ollama 
+# to support the Fractal Causal Convolution architecture.
+# See: https://huggingface.co/RthItalia/Rth-lm-25b/discussions for setup guide.

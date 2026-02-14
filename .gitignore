@@ -1,0 +1,17 @@
+
+cpu_da_v2/
+
+cpu_da_framework/
+
+node_modules/
+
+models/
+zed_hls/
+zetagrid_lib/
+xai/
+release_zenodo/
+*.o
+*.obj
+*.exe
+*.bin
+*.zip
