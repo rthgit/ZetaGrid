@@ -1,0 +1,135 @@
+
+
+================================================================
+== Synthesis Summary Report of 'kv_page_ops'
+================================================================
++ General Information: 
+    * Date:           Sun Jan 25 13:12:25 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        kv_page_ops_prj
+    * Solution:       sol1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu9p-flga2104-2-i
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------+--------+-------+---------+--------+----------+---------+------+----------+----------+----+-----------+-----------+-----+
+    |     Modules     |  Issue |       | Latency | Latency| Iteration|         | Trip |          |          |    |           |           |     |
+    |     & Loops     |  Type  | Slack | (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined|   BRAM   | DSP|     FF    |    LUT    | URAM|
+    +-----------------+--------+-------+---------+--------+----------+---------+------+----------+----------+----+-----------+-----------+-----+
+    |+ kv_page_ops    |  Timing|  -0.31|        -|       -|         -|        0|     -|    rewind|  16 (~0%)|   -|  236 (~0%)|  353 (~0%)|    -|
+    | o process_loop  |       -|   2.43|        -|       -|         4|        1|     -|       yes|         -|   -|          -|          -|    -|
+    +-----------------+--------+-------+---------+--------+----------+---------+------+----------+----------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 5             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | num_cmds | 0x10   | 32    | W      | Data signal of num_cmds          |                                                                      |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++-------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface   | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++-------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| cmd_stream  | in        | both          | 64    | 8     | 1     | 1      | 8     | 1      |
+| resp_stream | out       | both          | 32    | 4     | 1     | 1      | 4     | 1      |
++-------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+---------------------------------------------------------+
+| Argument    | Direction | Datatype                                                |
++-------------+-----------+---------------------------------------------------------+
+| cmd_stream  | in        | stream<hls::axis<ap_uint<64>, 0, 0, 0, '8', false>, 0>& |
+| resp_stream | out       | stream<hls::axis<ap_uint<32>, 0, 0, 0, '8', false>, 0>& |
+| num_cmds    | in        | int                                                     |
++-------------+-----------+---------------------------------------------------------+
+
+* SW-to-HW Mapping
++-------------+---------------+-----------+------------------------------------+
+| Argument    | HW Interface  | HW Type   | HW Info                            |
++-------------+---------------+-----------+------------------------------------+
+| cmd_stream  | cmd_stream    | interface |                                    |
+| resp_stream | resp_stream   | interface |                                    |
+| num_cmds    | s_axi_control | register  | name=num_cmds offset=0x10 range=32 |
++-------------+---------------+-----------+------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------------+-----+--------+-----------+--------+----------+---------+
+| Name                             | DSP | Pragma | Variable  | Op     | Impl     | Latency |
++----------------------------------+-----+--------+-----------+--------+----------+---------+
+| + kv_page_ops                    | 0   |        |           |        |          |         |
+|   icmp_ln54_fu_211_p2            |     |        | icmp_ln54 | setlt  | auto     | 0       |
+|   add_ln54_fu_217_p2             |     |        | add_ln54  | add    | fabric   | 0       |
+|   phys_addr_fu_277_p2            |     |        | phys_addr | add    | fabric   | 0       |
+|   grp_fu_193_p2                  |     |        | icmp_ln78 | seteq  | auto     | 0       |
+|   resp_stream_TDATA_int_regslice |     |        | val_2     | select | auto_sel | 0       |
+|   grp_fu_193_p2                  |     |        | icmp_ln73 | seteq  | auto     | 0       |
++----------------------------------+-----+--------+-----------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+-----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable  | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |           |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+-----------+------+---------+------------------+
+| + kv_page_ops     |           |           | 16   | 0    |        |           |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |           |      |         |                  |
+|   kv_memory_U     | ram_2p    |           | 16   |      | pragma | kv_memory | bram | 1       | 32, 8192, 1      |
++-------------------+-----------+-----------+------+------+--------+-----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+---------------------------------------------+-------------------------------------------+
+| Type            | Options                                     | Location                                  |
++-----------------+---------------------------------------------+-------------------------------------------+
+| interface       | axis port=cmd_stream                        | kernel.cpp:31 in kv_page_ops, cmd_stream  |
+| interface       | axis port=resp_stream                       | kernel.cpp:32 in kv_page_ops, resp_stream |
+| interface       | s_axilite port=num_cmds bundle=control      | kernel.cpp:33 in kv_page_ops, num_cmds    |
+| interface       | s_axilite port=return bundle=control        | kernel.cpp:34 in kv_page_ops, return      |
+| bind_storage    | variable=kv_memory type=ram_2p impl=bram    | kernel.cpp:37 in kv_page_ops, kv_memory   |
+| bind_storage    | variable=page_table type=ram_1p impl=lutram | kernel.cpp:38 in kv_page_ops, page_table  |
+| array_partition | variable=page_table cyclic factor=1         | kernel.cpp:51 in kv_page_ops, page_table  |
+| pipeline        | II=1                                        | kernel.cpp:55 in kv_page_ops              |
++-----------------+---------------------------------------------+-------------------------------------------+
+
+

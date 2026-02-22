@@ -1,0 +1,18 @@
+{
+  "0": {
+    "basicblocks": 39,
+    "calls": "",
+    "file": "kernel.cpp",
+    "fileloc": 15,
+    "instructions": 229,
+    "loads": {
+      "G": 1,
+      "L": 4
+    },
+    "name": "pack_int4_transpose",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 249
+  }
+}

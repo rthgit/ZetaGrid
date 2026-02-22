@@ -1,0 +1,12 @@
+kv_page_ops_kv_memory_RAM_2P_BRAM_1R1W
+kv_page_ops_control_s_axi
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_regslice_both
+kv_page_ops_flow_control_loop_pipe
+kv_page_ops

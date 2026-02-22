@@ -1,0 +1,26 @@
+{
+  "0": {
+    "basicblocks": 5,
+    "calls": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+    "file": "kernel.cpp",
+    "fileloc": 16,
+    "instructions": 242,
+    "loads": {
+      "L": 16
+    },
+    "name": "pack_int8",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 626
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 49,
+    "instructions": 24,
+    "name": "__hls_fptosi_float_i8",
+    "total_instructions": 24
+  }
+}

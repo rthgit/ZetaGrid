@@ -1,0 +1,75 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{
+    \includegraphics[width=0.3\textwidth]{rth_logo.png} \\
+    \vspace{1em}
+    \textbf{RTH-LM: A Fractal Temporal Convolutional Language Model}
+}
+\author{\textbf{Christian Quintino De Luca} \\ \textit{RTH Italia (Research \& Technology Hub), Milan, Italy} \\ \href{mailto:info@rthitalia.com}{info@rthitalia.com}}
+\date{February 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We introduce \textbf{RTH-LM}, a \textbf{Fractal Gated Causal Temporal Convolutional Network (TCN)} for language modeling, designed as an alternative to attention-centric architectures. RTH-LM targets linear-time inference in sequence length and improved data/compute efficiency under constrained training regimes. The model family is organized around a modular separation between a compact shared frozen core (the \textbf{Genome}) and trainable low-rank adapters (the \textbf{Soul}), enabling rapid domain specialization with minimal update artifacts. This paper presents the architecture, scaling strategy, and initial results, along with a hardware feasibility analysis for a 120B variant and a 1T-parameter cluster vision.
+\end{abstract}
+
+\hrule
+\vspace{1em}
+
+\section{Introduction}
+Transformer architectures dominate modern language modeling, but their operational profile often becomes the limiting factor in real deployments: quadratic attention costs, high memory pressure at long context, and a prevailing reliance on extremely large pretraining corpora. RTH-LM explores a different axis of scaling: \textbf{architectural structure over brute-force data scaling}. Use of causal temporal convolutions combined with gating and fractal block expansion provides a scalable path for high-capacity models on realistically obtainable hardware.
+
+\section{Architecture}
+\subsection{Overview}
+RTH-LM consists of tokenizer/embeddings, a Fractal Gated Causal TCN backbone, an output head, and optional modular adapters (the Soul). The backbone is a stack of Fractal Blocks composed of gated causal convolutional layers.
+
+\subsection{Gated Causal Convolutional Layer}
+Let $x \in \mathbb{R}^{T \times d}$ be the sequence representation. Each layer performs:
+\begin{align}
+    h &= \text{Conv1D}_{\text{causal, dilated}}(x) \\
+    [h_g, h_v] &= \text{split}(W h) \\
+    y &= \sigma(h_g) \odot \phi(h_v) \\
+    x' &= x + \text{Dropout}(W_o y) \\
+    \hat{x} &= \text{Norm}(x')
+\end{align}
+
+\subsection{Fractal Block Expansion and Genome/Soul Modularity}
+Large variants are formed by mirroring/replicating block groups. The system separates the shared frozen structural priors (\textbf{Genome}) from specialized trainable adapters (\textbf{Soul}), allowing instant domain swapping.
+
+\section{Training Methodology}
+RTH-LM is trained with autoregressive next-token prediction on a 1.5GB curated dataset. Reference run on a single NVIDIA A40 achieved convergence (Loss $\approx$ 1.0, PPL $\approx$ 2.8) in $\sim$24 hours.
+
+\section{Scaling and Hardware Feasibility}
+\subsection{120B Parameter Variant}
+Analysis of a 120B variant with 2-bit weight-only quantization:
+\begin{itemize}
+    \item \textbf{Weights (2-bit):} \textasciitilde{}30--36 GB
+    \item \textbf{KV-Equivalent State (128k):} \textasciitilde{}9.4 GB
+    \item \textbf{Runtime Overhead:} \textasciitilde{}6--12 GB
+    \item \textbf{Total (128k):} \textbf{\textasciitilde{}45.5--57.5 GB VRAM}
+\end{itemize}
+Deployment is compatible with single-card 80GB GPUs (H100/A100).
+
+\subsection{1T-Parameter Vision}
+A 1T-parameter model (2-bit) requires \textasciitilde{}250--300 GB for weights. Production inference can be achieved on a compact \textbf{8--9$\times$ H100 80GB cluster} for sharded inference and throughput optimization.
+
+\section{Conclusion}
+RTH-LM represents a shift towards sustainable, on-premise AI, proving high-capacity modeling is possible under dataset and compute constraints.
+
+\section*{Citation}
+De Luca, C. Q. (2026). \textit{RTH-LM: A Fractal Temporal Convolutional Language Model}. RTH Italia. \\
+\textbf{Repository:} \href{https://github.com/rthgit/ZetaGrid}{https://github.com/rthgit/ZetaGrid} \\
+\textbf{Model Hub:} \href{https://huggingface.co/RthItalia/Rth-lm-25b}{https://huggingface.co/RthItalia/Rth-lm-25b}
+
+\end{document}

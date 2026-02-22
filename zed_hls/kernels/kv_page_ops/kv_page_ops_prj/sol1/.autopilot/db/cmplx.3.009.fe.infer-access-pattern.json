@@ -1,0 +1,19 @@
+{
+  "0": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "kernel.cpp",
+    "fileloc": 30,
+    "instructions": 83,
+    "loads": {
+      "G": 2,
+      "L": 3
+    },
+    "name": "kv_page_ops",
+    "stores": {
+      "G": 1,
+      "L": 6
+    },
+    "total_instructions": 103
+  }
+}

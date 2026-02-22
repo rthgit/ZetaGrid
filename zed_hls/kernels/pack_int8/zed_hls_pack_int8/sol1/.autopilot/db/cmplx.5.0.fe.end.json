@@ -1,0 +1,38 @@
+{
+    "0": {
+        "name": "pack_int8",
+        "file": "kernel.cpp",
+        "fileloc": "16",
+        "instructions": "30",
+        "total_instructions": "485",
+        "calls": "1",
+        "basicblocks": "1"
+    },
+    "1": {
+        "name": "pack_int8_Pipeline_pack_loop",
+        "file": "kernel.cpp",
+        "fileloc": "24",
+        "instructions": "87",
+        "total_instructions": "455",
+        "calls": "2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "__hls_fptosi_float_i8",
+        "file": "lib_floatconversion.cpp",
+        "fileloc": "49",
+        "instructions": "23",
+        "total_instructions": "23",
+        "calls": "",
+        "basicblocks": "1"
+    }
+}

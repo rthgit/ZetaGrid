@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patent Application - ZETAGRID-FPGA Accelerated Training System</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 8.5in;
+            margin: 1in auto;
+            padding: 20px;
+            color: #000;
+        }
+        h1 { text-align: center; font-size: 18pt; margin-bottom: 30px; }
+        h2 { font-size: 14pt; margin-top: 30px; border-bottom: 2px solid #000; }
+        h3 { font-size: 12pt; margin-top: 20px; font-weight: bold; }
+        .claim { margin-left: 40px; margin-bottom: 15px; text-align: justify; }
+        .claim-number { font-weight: bold; }
+        .field { margin-bottom: 20px; }
+        .field-label { font-weight: bold; text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+        th { background-color: #f0f0f0; font-weight: bold; }
+        .abstract { font-style: italic; margin: 20px 0; padding: 15px; border: 1px solid #000; }
+    </style>
+</head>
+<body>
+
+<h1>UNITED STATES PATENT APPLICATION</h1>
+
+<div class="field">
+    <span class="field-label">Title of Invention:</span><br>
+    FPGA-ACCELERATED TOKENIZATION SYSTEM FOR LARGE LANGUAGE MODEL TRAINING
+</div>
+
+<div class="field">
+    <span class="field-label">Inventors:</span><br>
+    [TO BE COMPLETED]
+</div>
+
+<div class="field">
+    <span class="field-label">Application Number:</span> [TO BE ASSIGNED]<br>
+    <span class="field-label">Filing Date:</span> [TO BE COMPLETED]<br>
+    <span class="field-label">Attorney Docket Number:</span> ZETAGRID-001
+</div>
+
+<hr>
+
+<h2>ABSTRACT</h2>
+
+<div class="abstract">
+A heterogeneous computing system for accelerating large language model (LLM) training comprises a field-programmable gate array (FPGA) configured to perform byte-pair encoding tokenization in hardware, a high-speed memory interface for transferring tokenized data directly to graphics processing unit (GPU) video random access memory (VRAM), and a GPU configured to perform neural network forward and backward propagation passes. The FPGA operates concurrently with the GPU to eliminate data loading bottlenecks, achieving up to 10x improvement in tokenization throughput and 3-4x improvement in overall training speed compared to conventional CPU-based tokenization approaches.
+</div>
+
+<h2>BACKGROUND OF THE INVENTION</h2>
+
+<h3>Field of the Invention</h3>
+<p>
+This invention relates generally to artificial intelligence and machine learning systems, and more particularly to hardware acceleration of data preprocessing for large language model training using field-programmable gate arrays.
+</p>
+
+<h3>Description of Related Art</h3>
+<p>
+Large language models (LLMs) such as GPT, BERT, and similar transformer-based architectures have demonstrated remarkable capabilities in natural language processing tasks. However, training these models requires substantial computational resources and time. A typical training pipeline consists of three major phases: (1) data loading and tokenization, (2) neural network computation (forward/backward passes), and (3) optimizer updates.
+</p>
+
+<p>
+In conventional systems, tokenization is performed on the central processing unit (CPU) using software libraries such as Hugging Face Transformers. This approach suffers from several limitations:
+</p>
+
+<ul>
+    <li>CPU tokenization operates sequentially, creating a bottleneck when the GPU is idle waiting for data</li>
+    <li>Data must be transferred from system RAM to GPU VRAM via PCIe, which has limited bandwidth (~25 GB/s for PCIe 4.0)</li>
+    <li>Python-based tokenizers incur significant interpreter overhead</li>
+    <li>No parallelism between tokenization and neural network computation</li>
+</ul>
+
+<p>
+Prior art in FPGA acceleration has focused primarily on accelerating the neural network computation itself (matrix multiplications, convolutions) rather than the data preprocessing stage. No known system employs FPGA-based tokenization specifically optimized for LLM training workflows.
+</p>
+
+<h2>SUMMARY OF THE INVENTION</h2>
+
+<p>
+The present invention provides a heterogeneous computing system that addresses the aforementioned limitations by offloading tokenization to a dedicated FPGA, which operates in parallel with GPU-based neural network training. The system comprises:
+</p>
+
+<ul>
+    <li>An FPGA configured with custom hardware logic to perform byte-pair encoding (BPE) tokenization</li>
+    <li>A high-bandwidth memory interface (CXL, PCIe 5.0, or direct FPGA-GPU interconnect) for zero-copy data transfer</li>
+    <li>A GPU optimized for neural network training using mixed-precision arithmetic (BFloat16, TensorFloat32)</li>
+    <li>A software orchestration layer that coordinates concurrent FPGA tokenization and GPU computation</li>
+</ul>
+
+<p>
+The invention achieves significant performance improvements: tokenization throughput increases by 10x (from ~2M to ~20M tokens/second), and overall training throughput increases by 3-4x (from ~70k to ~270k tokens/second) compared to baseline CPU tokenization approaches.
+</p>
+
+<h2>DETAILED DESCRIPTION OF THE INVENTION</h2>
+
+<h3>System Architecture</h3>
+
+<p>
+Referring to the system architecture, the invention comprises the following components:
+</p>
+
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Function</th>
+        <th>Specifications</th>
+    </tr>
+    <tr>
+        <td>FPGA Module</td>
+        <td>Hardware tokenization engine</td>
+        <td>Xilinx Alveo U280 or Intel Agilex 5 E-Series, 32GB HBM2</td>
+    </tr>
+    <tr>
+        <td>GPU Module</td>
+        <td>Neural network training</td>
+        <td>NVIDIA A40/A100, 48GB VRAM, BFloat16/TF32 support</td>
+    </tr>
+    <tr>
+        <td>Memory Interface</td>
+        <td>High-speed data transfer</td>
+        <td>CXL 3.0 (64 GB/s) or PCIe 5.0 (128 GB/s)</td>
+    </tr>
+    <tr>
+        <td>Host CPU</td>
+        <td>Orchestration and control</td>
+        <td>Intel Xeon Sapphire Rapids or AMD EPYC Genoa</td>
+    </tr>
+</table>
+
+<h3>FPGA Tokenization Kernel</h3>
+
+<p>
+The FPGA is configured with a custom hardware description language (HDL) kernel implementing byte-pair encoding (BPE) tokenization. The kernel operates as follows:
+</p>
+
+<ol>
+    <li><strong>Input Buffer:</strong> Raw text is streamed into FPGA on-chip memory (BRAM) from system RAM</li>
+    <li><strong>BPE State Machine:</strong> A pipelined state machine performs vocabulary lookup and merging operations in parallel across 16-32 text streams</li>
+    <li><strong>Output Buffer:</strong> Tokenized sequences are written to HBM2 memory on the FPGA card</li>
+    <li><strong>DMA Transfer:</strong> Completed batches are transferred to GPU VRAM via CXL or PCIe</li>
+</ol>
+
+<p>
+The pipeline achieves a throughput of 200 million characters per second by exploiting parallelism at multiple levels: character-level parallelism (processing 64 characters simultaneously), stream-level parallelism (16 independent text streams), and batch-level parallelism (multiple batches in flight).
+</p>
+
+<h3>Integration with Neural Network Training</h3>
+
+<p>
+The system employs a double-buffering scheme where the FPGA tokenizes batch N+1 while the GPU processes batch N. This overlapping execution eliminates idle time and maximizes hardware utilization. The software orchestration layer, implemented in Python with PyTorch bindings, manages the pipeline synchronization.
+</p>
+
+<h2>CLAIMS</h2>
+
+<p class="claim">
+<span class="claim-number">1.</span> A system for accelerating large language model training, comprising:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a field-programmable gate array (FPGA) configured to perform byte-pair encoding tokenization on input text data in hardware;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a memory interface operatively coupled to said FPGA and configured to transfer tokenized data to a graphics processing unit (GPU) video random access memory (VRAM);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a GPU operatively coupled to said memory interface and configured to perform neural network forward propagation and backward propagation operations on said tokenized data; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a control module configured to coordinate concurrent operation of said FPGA and said GPU such that said FPGA tokenizes a subsequent batch of input text while said GPU processes a current batch of tokenized data.
+</p>
+
+<p class="claim">
+<span class="claim-number">2.</span> The system of claim 1, wherein said FPGA comprises:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a plurality of parallel tokenization pipelines, each pipeline configured to process a separate stream of input text concurrently;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;on-chip high-bandwidth memory (HBM2) configured to store intermediate tokenization results; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a direct memory access (DMA) engine configured to transfer tokenized batches from said HBM2 to said GPU VRAM without CPU intervention.
+</p>
+
+<p class="claim">
+<span class="claim-number">3.</span> The system of claim 1, wherein said memory interface comprises a Compute Express Link (CXL) interface providing cache-coherent memory access between said FPGA and said GPU.
+</p>
+
+<p class="claim">
+<span class="claim-number">4.</span> The system of claim 1, wherein said FPGA is configured to perform byte-pair encoding tokenization at a throughput of at least 10 million tokens per second.
+</p>
+
+<p class="claim">
+<span class="claim-number">5.</span> The system of claim 1, wherein said GPU is configured to operate in mixed-precision mode using BFloat16 and TensorFloat32 (TF32) arithmetic.
+</p>
+
+<p class="claim">
+<span class="claim-number">6.</span> The system of claim 1, wherein said control module is further configured to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;monitor GPU utilization;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;dynamically adjust FPGA tokenization rate based on said GPU utilization to maintain continuous GPU operation; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;implement double-buffering such that tokenization of batch N+1 overlaps with GPU processing of batch N.
+</p>
+
+<p class="claim">
+<span class="claim-number">7.</span> A method for accelerating large language model training, comprising:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;receiving input text data at a field-programmable gate array (FPGA);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;performing byte-pair encoding tokenization on said input text data using hardware logic implemented in said FPGA to generate tokenized data;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;transferring said tokenized data from said FPGA to graphics processing unit (GPU) video random access memory (VRAM) via a high-speed memory interface;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;performing neural network training operations on said tokenized data using said GPU; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;concurrently tokenizing a subsequent batch of input text data using said FPGA while said GPU performs said neural network training operations on a current batch.
+</p>
+
+<p class="claim">
+<span class="claim-number">8.</span> The method of claim 7, wherein said performing byte-pair encoding tokenization comprises:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;loading a byte-pair encoding vocabulary into on-chip memory of said FPGA;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;processing multiple text streams in parallel using a plurality of pipelined state machines; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;writing tokenized output to high-bandwidth memory (HBM2) integrated with said FPGA.
+</p>
+
+<p class="claim">
+<span class="claim-number">9.</span> The method of claim 7, wherein said high-speed memory interface comprises a Compute Express Link (CXL) interface providing at least 64 GB/s bandwidth.
+</p>
+
+<p class="claim">
+<span class="claim-number">10.</span> The method of claim 7, further comprising:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;monitoring a fill level of a GPU input buffer;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;adjusting a tokenization rate of said FPGA based on said fill level to prevent buffer overflow or underflow; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;maintaining GPU utilization above 95% by ensuring continuous availability of tokenized data.
+</p>
+
+<p class="claim">
+<span class="claim-number">11.</span> A non-transitory computer-readable storage medium storing instructions that, when executed by a processor, cause the processor to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;configure a field-programmable gate array (FPGA) with a hardware tokenization kernel;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stream input text data to said FPGA for tokenization;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;coordinate transfer of tokenized data from said FPGA to a graphics processing unit (GPU);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;initiate neural network training operations on said GPU using said tokenized data; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;manage concurrent operation of said FPGA and said GPU to maximize overall system throughput.
+</p>
+
+<p class="claim">
+<span class="claim-number">12.</span> The computer-readable storage medium of claim 11, wherein said instructions further cause the processor to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;implement a double-buffering scheme with at least two buffers in GPU memory;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;direct said FPGA to write tokenized data to a first buffer while said GPU reads from a second buffer; and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;swap said first buffer and said second buffer upon completion of GPU processing of said second buffer.
+</p>
+
+<p class="claim">
+<span class="claim-number">13.</span> The system of claim 1, wherein said system achieves at least a 3x improvement in overall training throughput compared to a baseline system using CPU-based tokenization.
+</p>
+
+<p class="claim">
+<span class="claim-number">14.</span> The system of claim 1, wherein said FPGA comprises a Xilinx Alveo U280 or Intel Agilex 5 E-Series FPGA with integrated high-bandwidth memory.
+</p>
+
+<p class="claim">
+<span class="claim-number">15.</span> The method of claim 7, wherein said neural network training operations comprise training a transformer-based language model with at least 1 billion parameters.
+</p>
+
+<h2>ADVANTAGES OF THE INVENTION</h2>
+
+<p>
+The present invention provides several significant advantages over prior art:
+</p>
+
+<ul>
+    <li><strong>10x Tokenization Speedup:</strong> Hardware tokenization on FPGA achieves 20M+ tokens/second vs. 2M tokens/second for CPU</li>
+    <li><strong>3-4x Overall Training Speedup:</strong> Elimination of tokenization bottleneck increases end-to-end throughput from 70k to 270k tokens/second</li>
+    <li><strong>Improved Hardware Utilization:</strong> GPU utilization increases from ~70% to >95% due to continuous data availability</li>
+    <li><strong>Scalability:</strong> System scales to longer context lengths (16k+ tokens) without proportional performance degradation</li>
+    <li><strong>Cost Efficiency:</strong> Single FPGA ($8k-12k) provides equivalent acceleration to multiple GPUs ($40k+)</li>
+</ul>
+
+<h2>CONCLUSION</h2>
+
+<p>
+While the invention has been described with reference to specific embodiments, it will be understood by those skilled in the art that various changes may be made and equivalents may be substituted without departing from the scope of the invention. For example, alternative FPGA architectures, different memory interfaces (PCIe 5.0, NVLink), or different tokenization algorithms (WordPiece, SentencePiece) may be employed. The scope of the invention is defined by the appended claims.
+</p>
+
+<hr>
+
+<p style="text-align: center; margin-top: 40px;">
+<strong>END OF PATENT APPLICATION</strong><br>
+Attorney Docket: ZETAGRID-001<br>
+Date: January 25, 2026
+</p>
+
+</body>
+</html>

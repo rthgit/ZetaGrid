@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-ZETAGRID 25B - INTERACTIVE INFERENCE
-Load trained checkpoint and generate text interactively.
+RTH-LM 25B V4 - INTERACTIVE INFERENCE
+Load V4 Expanded checkpoint (rank 512, ~950M trainable) and generate text.
 """
 
 import torch
@@ -13,29 +13,45 @@ import os
 import gc
 
 print("=" * 70)
-print("ZETAGRID 25B - INTERACTIVE INFERENCE")
-print("Non-Transformer LLM | TCN Backbone")
+print("RTH-LM 25B V4 - INTERACTIVE INFERENCE")
+print("Non-Transformer LLM | TCN + Genome + Soul (Rank 512)")
 print("=" * 70)
 
 # ============================================================
 # CONFIG (must match training)
 # ============================================================
 
-BASE_DIR = "/workspace/zetagrid_50b"
+# Detect Environment: RunPod vs Local Windows
+if os.name == 'nt':
+    print("🖥️  Running on Local Windows (E:/ZETAGRID)")
+    BASE_DIR = r"E:/ZETAGRID"
+    CKPT_DIR = BASE_DIR # Checkpoints are in root
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+else:
+    print("☁️  Running on Linux/RunPod")
+    BASE_DIR = "/workspace/zetagrid_50b"
+    # Fallback to standard check path
+    CKPT_DIR = f"{BASE_DIR}/phase2_checkpoints"
+    DEVICE = "cuda"
+
 GENOME_PATH = f"{BASE_DIR}/zetagrid_25b_production.npy"
 DTYPE = torch.bfloat16
-DEVICE = "cuda"
+
+# PRE-FLIGHT CHECK
+if not os.path.exists(GENOME_PATH):
+    print(f"❌ CRITICAL ERROR: Genome file not found at {GENOME_PATH}")
+    print("   Please ensure correct path or download the model.")
+    if os.name == 'nt':
+        print("   On Windows, ensure E:/ZETAGRID is mounted/accessible.")
+    exit(1)
 
 VOCAB_SIZE = 256
 D_MODEL = 4096
 D_FF = 16384
 N_LAYERS = 32
 KERNEL_SIZE = 3
-LORA_RANK = 128
+LORA_RANK = 512
 DILATION_CYCLE = [1, 2, 4, 8, 16, 32, 64, 128]
-
-# Find best checkpoint
-CKPT_DIR = f"{BASE_DIR}/phase2_checkpoints"
 
 # ============================================================
 # MODEL (same as training)
@@ -186,22 +202,47 @@ class ZetaGrid25B(nn.Module):
 # ============================================================
 
 def find_best_checkpoint():
-    """Find latest/best checkpoint"""
-    if not os.path.exists(CKPT_DIR):
-        return None
+    """Find latest/best checkpoint — prioritizes V4 expanded, then V3, then V1"""
+    search_dirs = [
+        CKPT_DIR,
+        os.path.join(BASE_DIR, 'v4_checkpoints'),
+        os.path.join(BASE_DIR, 'v3_checkpoints'),
+        os.path.join(BASE_DIR, 'repaired_checkpoints'),
+        os.path.join(BASE_DIR, 'code_checkpoints'),
+    ]
     
-    files = [f for f in os.listdir(CKPT_DIR) if f.endswith('.pt')]
-    if not files:
-        return None
+    # Priority order for FINAL checkpoints
+    priority = [
+        'zeta25b_code_FINAL.pt',
+        'zeta25b_v4_expanded_FINAL.pt',
+        'zeta25b_v3_knowledge_FINAL.pt',
+        'zeta25b_v2_FINAL.pt',
+    ]
     
-    # Prefer FINAL, otherwise latest step
-    for f in files:
-        if 'FINAL' in f:
-            return os.path.join(CKPT_DIR, f)
+    # Check priority files first
+    for fname in priority:
+        for d in search_dirs:
+            path = os.path.join(d, fname)
+            if os.path.exists(path):
+                return path
+        # Also check BASE_DIR root
+        path = os.path.join(BASE_DIR, fname)
+        if os.path.exists(path):
+            return path
     
-    # Sort by step number
-    files.sort(key=lambda f: int(''.join(filter(str.isdigit, f)) or '0'))
-    return os.path.join(CKPT_DIR, files[-1])
+    # Fallback: any .pt file
+    for d in search_dirs:
+        if not os.path.exists(d):
+            continue
+        files = [f for f in os.listdir(d) if f.endswith('.pt')]
+        if files:
+            for f in files:
+                if 'FINAL' in f:
+                    return os.path.join(d, f)
+            files.sort(key=lambda f: int(''.join(filter(str.isdigit, f)) or '0'))
+            return os.path.join(d, files[-1])
+    
+    return None
 
 def main():
     # Build model
@@ -236,9 +277,10 @@ def main():
     presets = [
         "The future of artificial intelligence is",
         "Once upon a time, there was a",
-        "Python programming is",
-        "In a world where technology",
-        "The most important thing in life is",
+        "def fibonacci(n):\n    ",
+        "L'Italia è famosa per",
+        "The capital of France is",
+        "Hello! How can I help you today?",
     ]
     
     for p in presets:

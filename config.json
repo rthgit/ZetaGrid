@@ -1,0 +1,33 @@
+{
+    "model_type": "rth_tcn",
+    "architectures": [
+        "ZetaGrid25B"
+    ],
+    "num_parameters": 25000000000,
+    "hidden_size": 4096,
+    "intermediate_size": 16384,
+    "num_hidden_layers": 32,
+    "vocab_size": 256,
+    "lora_rank": 128,
+    "kernel_size": 3,
+    "dilation_cycle": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+    ],
+    "max_position_embeddings": 2048,
+    "torch_dtype": "bfloat16",
+    "transformers_version": "custom",
+    "model_version": "v3-knowledge",
+    "genome_params": 6400000000,
+    "trainable_params": 244000000,
+    "effective_params": 25000000000,
+    "license": "cc-by-nc-4.0",
+    "author": "Christian Quintino De Luca — RTH Italia",
+    "description": "RTH-LM 25B: Fractal Gated Causal TCN. Non-Transformer. Genome (frozen) + Soul (LoRA adapters). Linear O(N) inference."
+}

@@ -1,0 +1,22 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="sol1"/>
+    </name>
+    <project>
+        <value string="zed_hls_pack_int8"/>
+    </project>
+    <flowTarget value="vivado"/>
+    <targetInfo>
+        <TargetInfo value="xcvu9p:-flga2104:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/virtexuplus/virtexuplus" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="4.0" default="false"/>
+    </clockList>
+    <config>
+        <config_compile complex-mul-dsp="0" pipeline_loops="64"/>
+    </config>
+</AutoPilot:solution>
+

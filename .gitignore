@@ -1,17 +1,37 @@
-
-cpu_da_v2/
-
-cpu_da_framework/
-
-node_modules/
-
-models/
-zed_hls/
-zetagrid_lib/
-xai/
-release_zenodo/
-*.o
-*.obj
-*.exe
+# Binary Models & Data (Too large for GitHub)
+*.npy
+*.pt
 *.bin
+*.gguf
+*.qulp
+*.onnx
+*.safetensors
 *.zip
+
+# Folders to Ignore
+rth_lm_25b_v4_sharded/
+rth_lm_25b_code_sharded/
+cpu_da_v2/
+cpu_da_framework/
+models/
+datasets/
+__pycache__/
+.ipynb_checkpoints/
+
+# System & OS
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.obj
+*.o
+*.exe
+
+# Git LFS (if ever used)
+.gitattributes
+
+# Specific ignore
+dummy_genome.npy
+dummy_soul.pt
+zeta50b_sft_step2000.pt
+rth_test_v1.gguf

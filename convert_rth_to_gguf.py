@@ -6,7 +6,7 @@ import os
 
 # CONFIG (Matches ZETAGRID_INFERENCE.py)
 D_MODEL = 4096
-D_FF = 16384
+D_FF = 8192
 N_LAYERS = 32
 KERNEL_SIZE = 3
 LORA_RANK = 128
@@ -14,7 +14,8 @@ LORA_RANK = 128
 def convert_rth_to_gguf(weights_path, ckpt_path, output_gguf, n_layers=N_LAYERS):
     # 1. LOAD DATA
     print(f"📂 Loading Genome from {weights_path}...")
-    genome_data = np.load(weights_path).astype(np.float32)
+    print(f"📂 Loading Genome from {weights_path} with MMAP (Low RAM)...")
+    genome_data = np.load(weights_path, mmap_mode='r')
     print(f"   [DEBUG] Genome data size: {len(genome_data)}")
     print(f"📂 Loading Soul Checkpoint from {ckpt_path}...")
     ckpt = torch.load(ckpt_path, map_location="cpu")
@@ -85,8 +86,8 @@ def convert_rth_to_gguf(weights_path, ckpt_path, output_gguf, n_layers=N_LAYERS)
 
 if __name__ == "__main__":
     GENOME = "E:/ZETAGRID/zetagrid_25b_production.npy"
-    CKPT = "E:/ZETAGRID/zeta25b_step15000.pt"
-    OUT = "E:/ZETAGRID/rth_lm_25b_v1.gguf"
+    CKPT = "E:/ZETAGRID/zeta_25B_v2.pt"
+    OUT = "E:/ZETAGRID/rth_lm_25b_v2.gguf"
     
     if os.path.exists(GENOME) and os.path.exists(CKPT):
         convert_rth_to_gguf(GENOME, CKPT, OUT)

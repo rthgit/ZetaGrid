@@ -1,0 +1,175 @@
+
+
+================================================================
+== Vitis HLS Report for 'pack_int8'
+================================================================
+* Date:           Sun Jan 25 12:59:19 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        zed_hls_pack_int8
+* Solution:       sol1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  4.00 ns|  2.736 ns|     1.08 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+------------+-----------+-----------+-----+------------+---------+
+    |   Latency (cycles)   |   Latency (absolute)  |     Interval     | Pipeline|
+    |   min   |     max    |    min    |    max    | min |     max    |   Type  |
+    +---------+------------+-----------+-----------+-----+------------+---------+
+    |        5|  2147483638|  20.000 ns|  8.590 sec|    6|  2147483639|       no|
+    +---------+------------+-----------+-----------+-----+------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------+------------------------------+---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+        |                                        |                              |   Latency (cycles)   |  Latency (absolute)  |     Interval     |                    Pipeline                   |
+        |                Instance                |            Module            |   min   |     max    |    min   |    max    | min |     max    |                      Type                     |
+        +----------------------------------------+------------------------------+---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+        |grp_pack_int8_Pipeline_pack_loop_fu_78  |pack_int8_Pipeline_pack_loop  |        2|  2147483635|  8.000 ns|  8.590 sec|    1|  2147483634|  loop auto-rewind stp(delay=0 clock cycles(s))|
+        +----------------------------------------+------------------------------+---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|      142|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        0|     -|      288|      948|    0|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        0|       35|    -|
+|Register             |        -|     -|      121|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      409|     1125|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1440|  2280|   788160|   394080|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4320|  6840|  2364480|  1182240|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------+------------------------------+---------+----+-----+-----+-----+
+    |                Instance                |            Module            | BRAM_18K| DSP|  FF | LUT | URAM|
+    +----------------------------------------+------------------------------+---------+----+-----+-----+-----+
+    |control_s_axi_U                         |control_s_axi                 |        0|   0|   74|  104|    0|
+    |grp_pack_int8_Pipeline_pack_loop_fu_78  |pack_int8_Pipeline_pack_loop  |        0|   0|  214|  844|    0|
+    +----------------------------------------+------------------------------+---------+----+-----+-----+-----+
+    |Total                                   |                              |        0|   0|  288|  948|    0|
+    +----------------------------------------+------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                       Variable Name                      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------------------------------+----------+----+---+----+------------+------------+
+    |sub_fu_154_p2                                             |         +|   0|  0|  36|          29|           2|
+    |sub_ln22_1_fu_128_p2                                      |         -|   0|  0|  36|           1|          29|
+    |sub_ln22_fu_108_p2                                        |         -|   0|  0|  39|           1|          32|
+    |grp_pack_int8_Pipeline_pack_loop_fu_78_out_stream_TREADY  |       and|   0|  0|   2|           1|           1|
+    |num_packs_fu_147_p3                                       |    select|   0|  0|  29|           1|          29|
+    +----------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                     |          |   0|  0| 142|          33|          93|
+    +----------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                      |  26|          5|    1|          5|
+    |in_stream_TREADY_int_regslice  |   9|          2|    1|          2|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          |  35|          7|    2|          7|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |                         Name                        | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                            |   4|   0|    4|          0|
+    |grp_pack_int8_Pipeline_pack_loop_fu_78_ap_start_reg  |   1|   0|    1|          0|
+    |num_packs_reg_176                                    |  29|   0|   29|          0|
+    |sub_ln22_1_reg_166                                   |  29|   0|   29|          0|
+    |sub_reg_181                                          |  29|   0|   29|          0|
+    |tmp_1_reg_171                                        |  28|   0|   28|          0|
+    |tmp_2_reg_161                                        |   1|   0|    1|          0|
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |Total                                                | 121|   0|  121|          0|
+    +-----------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+---------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
++-----------------------+-----+-----+------------+---------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|              control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|              control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|              control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|              control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|              control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|            pack_int8|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|            pack_int8|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|            pack_int8|  return value|
+|in_stream_TDATA        |   in|   32|        axis|   in_stream_V_data_V|       pointer|
+|in_stream_TVALID       |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TREADY       |  out|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TLAST        |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TKEEP        |   in|    4|        axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB        |   in|    4|        axis|   in_stream_V_strb_V|       pointer|
+|out_stream_TDATA       |  out|  128|        axis|  out_stream_V_data_V|       pointer|
+|out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TKEEP       |  out|   16|        axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB       |  out|   16|        axis|  out_stream_V_strb_V|       pointer|
++-----------------------+-----+-----+------------+---------------------+--------------+
+

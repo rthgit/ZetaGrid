@@ -1,0 +1,13 @@
+comandi colab per dimostrazione 
+
+offial
+
+%%shell
+g++ -O3 -mavx2 -mfma -fopenmp morph_colab_gpu.cpp -o morph_demo -lOpenCL
+./morph_demo
+
+cuda
+
+%%shell
+nvcc -O3 -arch=sm_75 morph_colab_tensor.cu -o morph_cuda -lcublas
+./morph_cuda

@@ -1,0 +1,186 @@
+
+
+================================================================
+== Vitis HLS Report for 'pack_int4_transpose'
+================================================================
+* Date:           Sun Jan 25 13:09:51 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        pack_int4_transpose_prj
+* Solution:       sol1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.364 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+------------+----------+-----------+-----+------------+---------+
+    |   Latency (cycles)   |  Latency (absolute)  |     Interval     | Pipeline|
+    |   min   |     max    |    min   |    max    | min |     max    |   Type  |
+    +---------+------------+----------+-----------+-----+------------+---------+
+    |        2|  2617245659|  6.660 ns|  8.715 sec|    3|  2617245660|       no|
+    +---------+------------+----------+-----------+-----+------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+-----------------------------------------------+
+        |                                                   |                                        |  Latency (cycles) |  Latency (absolute) |  Interval |                    Pipeline                   |
+        |                      Instance                     |                 Module                 |   min   |   max   |    min   |    max   | min | max |                      Type                     |
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+-----------------------------------------------+
+        |grp_pack_int4_transpose_Pipeline_read_loop_fu_254  |pack_int4_transpose_Pipeline_read_loop  |       35|       35|  0.117 us|  0.117 us|   33|   33|  loop auto-rewind stp(delay=0 clock cycles(s))|
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+-----------------------------------------------+
+
+        * Loop: 
+        +--------------+---------+------------+----------+-----------+-----------+--------------+----------+
+        |              |   Latency (cycles)   | Iteration|  Initiation Interval  |     Trip     |          |
+        |   Loop Name  |   min   |     max    |  Latency |  achieved |   target  |     Count    | Pipelined|
+        +--------------+---------+------------+----------+-----------+-----------+--------------+----------+
+        |- block_loop  |        0|  2617245657|        39|          -|          -|  0 ~ 67108863|        no|
+        +--------------+---------+------------+----------+-----------+-----------+--------------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|      241|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        0|     -|      298|      619|    0|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        0|       64|    -|
+|Register             |        -|     -|      146|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      444|      924|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1440|  2280|   788160|   394080|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4320|  6840|  2364480|  1182240|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+-----+-----+
+    |                      Instance                     |                 Module                 | BRAM_18K| DSP|  FF | LUT | URAM|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+-----+-----+
+    |control_s_axi_U                                    |control_s_axi                           |        0|   0|   74|  104|    0|
+    |grp_pack_int4_transpose_Pipeline_read_loop_fu_254  |pack_int4_transpose_Pipeline_read_loop  |        0|   0|  224|  515|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+-----+-----+
+    |Total                                              |                                        |        0|   0|  298|  619|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |i_2_fu_374_p2         |         +|   0|  0|  34|          27|           1|
+    |sub_fu_356_p2         |         +|   0|  0|  35|          28|           2|
+    |sub_ln21_1_fu_340_p2  |         -|   0|  0|  35|           1|          28|
+    |sub_ln21_fu_306_p2    |         -|   0|  0|  39|           1|          32|
+    |icmp_ln23_fu_369_p2   |      icmp|   0|  0|  35|          28|          28|
+    |p_out_last_fu_380_p2  |      icmp|   0|  0|  35|          28|          28|
+    |num_blocks_fu_349_p3  |    select|   0|  0|  28|           1|          28|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0| 241|         114|         147|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                      |  37|          7|    1|          7|
+    |i_fu_98                        |   9|          2|   27|         54|
+    |in_stream_TREADY_int_regslice  |   9|          2|    1|          2|
+    |out_stream_TDATA_blk_n         |   9|          2|    1|          2|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          |  64|         13|   30|         65|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |                              Name                              | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                       |   6|   0|    6|          0|
+    |grp_pack_int4_transpose_Pipeline_read_loop_fu_254_ap_start_reg  |   1|   0|    1|          0|
+    |i_fu_98                                                         |  27|   0|   27|          0|
+    |num_blocks_reg_769                                              |  28|   0|   28|          0|
+    |p_out_last_reg_782                                              |   1|   0|    1|          0|
+    |sub_reg_774                                                     |  28|   0|   28|          0|
+    |tmp_1_reg_759                                                   |  27|   0|   27|          0|
+    |tmp_2_reg_764                                                   |  27|   0|   27|          0|
+    |tmp_reg_754                                                     |   1|   0|    1|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                           | 146|   0|  146|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+---------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
++-----------------------+-----+-----+------------+---------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_AWADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|              control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|              control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_ARADDR   |   in|    5|       s_axi|              control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|              control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|              control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|              control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|              control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|              control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|  pack_int4_transpose|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|  pack_int4_transpose|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|  pack_int4_transpose|  return value|
+|in_stream_TDATA        |   in|   32|        axis|   in_stream_V_data_V|       pointer|
+|in_stream_TVALID       |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TREADY       |  out|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TLAST        |   in|    1|        axis|   in_stream_V_last_V|       pointer|
+|in_stream_TKEEP        |   in|    4|        axis|   in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB        |   in|    4|        axis|   in_stream_V_strb_V|       pointer|
+|out_stream_TDATA       |  out|  128|        axis|  out_stream_V_data_V|       pointer|
+|out_stream_TVALID      |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TREADY      |   in|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TLAST       |  out|    1|        axis|  out_stream_V_last_V|       pointer|
+|out_stream_TKEEP       |  out|   16|        axis|  out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB       |  out|   16|        axis|  out_stream_V_strb_V|       pointer|
++-----------------------+-----+-----+------------+---------------------+--------------+
+

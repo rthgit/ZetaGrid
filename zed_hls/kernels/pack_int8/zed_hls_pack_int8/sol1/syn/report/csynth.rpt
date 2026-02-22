@@ -1,0 +1,144 @@
+
+
+================================================================
+== Synthesis Summary Report of 'pack_int8'
+================================================================
++ General Information: 
+    * Date:           Sun Jan 25 12:59:19 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        zed_hls_pack_int8
+    * Solution:       sol1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu9p-flga2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +---------------------------------+------+------+------------+-----------+----------+------------+-----------+----------+------+----+-----------+------------+-----+
+    |             Modules             | Issue|      |  Latency   |  Latency  | Iteration|            |    Trip   |          |      |    |           |            |     |
+    |             & Loops             | Type | Slack|  (cycles)  |    (ns)   |  Latency |  Interval  |   Count   | Pipelined| BRAM | DSP|     FF    |     LUT    | URAM|
+    +---------------------------------+------+------+------------+-----------+----------+------------+-----------+----------+------+----+-----------+------------+-----+
+    |+ pack_int8                      |     -|  0.18|  2147483638|  8.590e+09|         -|  2147483639|          -|        no|     -|   -|  409 (~0%)|  1125 (~0%)|    -|
+    | + pack_int8_Pipeline_pack_loop  |     -|  0.32|  2147483635|  8.590e+09|         -|  2147483635|          -|        no|     -|   -|  214 (~0%)|   844 (~0%)|    -|
+    |  o pack_loop                    |    II|  2.92|  2147483633|  8.590e+09|        18|          16|  134217727|       yes|     -|   -|          -|           -|    -|
+    |   + p_hls_fptosi_float_i8       |     -|  0.56|           1|      4.000|         -|           1|          -|       yes|     -|   -|   11 (~0%)|   399 (~0%)|    -|
+    +---------------------------------+------+------+------------+-----------+----------+------------+-----------+----------+------+----+-----------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 5             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+--------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register     | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+--------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL         | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER         | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER       | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR       | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | num_elements | 0x10   | 32    | W      | Data signal of num_elements      |                                                                      |
++---------------+--------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface  | Direction | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+| in_stream  | in        | both          | 32    | 4     | 1     | 1      | 4     | 1      |
+| out_stream | out       | both          | 128   | 16    | 1     | 1      | 16    | 1      |
++------------+-----------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++--------------+-----------+----------------------------------------------------------+
+| Argument     | Direction | Datatype                                                 |
++--------------+-----------+----------------------------------------------------------+
+| in_stream    | in        | stream<hls::axis<ap_uint<32>, 0, 0, 0, '8', false>, 0>&  |
+| out_stream   | out       | stream<hls::axis<ap_uint<128>, 0, 0, 0, '8', false>, 0>& |
+| num_elements | in        | int                                                      |
++--------------+-----------+----------------------------------------------------------+
+
+* SW-to-HW Mapping
++--------------+---------------+-----------+----------------------------------------+
+| Argument     | HW Interface  | HW Type   | HW Info                                |
++--------------+---------------+-----------+----------------------------------------+
+| in_stream    | in_stream     | interface |                                        |
+| out_stream   | out_stream    | interface |                                        |
+| num_elements | s_axi_control | register  | name=num_elements offset=0x10 range=32 |
++--------------+---------------+-----------+----------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++---------------------------------+-----+--------+-------------+--------+-----------+---------+
+| Name                            | DSP | Pragma | Variable    | Op     | Impl      | Latency |
++---------------------------------+-----+--------+-------------+--------+-----------+---------+
+| + pack_int8                     | 0   |        |             |        |           |         |
+|   sub_ln22_fu_108_p2            |     |        | sub_ln22    | sub    | fabric    | 0       |
+|   sub_ln22_1_fu_128_p2          |     |        | sub_ln22_1  | sub    | fabric    | 0       |
+|   num_packs_fu_147_p3           |     |        | num_packs   | select | auto_sel  | 0       |
+|   sub_fu_154_p2                 |     |        | sub         | add    | fabric    | 0       |
+|  + pack_int8_Pipeline_pack_loop | 0   |        |             |        |           |         |
+|    icmp_ln24_fu_145_p2          |     |        | icmp_ln24   | setlt  | auto      | 0       |
+|    i_1_fu_151_p2                |     |        | i_1         | add    | fabric    | 0       |
+|    p_out_last_fu_157_p2         |     |        | p_out_last  | seteq  | auto      | 0       |
+|   + p_hls_fptosi_float_i8       | 0   |        |             |        |           |         |
+|     add_ln317_fu_84_p2          |     |        | add_ln317   | add    | fabric    | 0       |
+|     sub_ln18_fu_98_p2           |     |        | sub_ln18    | sub    | fabric    | 0       |
+|     select_ln18_fu_108_p3       |     |        | select_ln18 | select | auto_sel  | 0       |
+|     lshr_ln18_fu_124_p2         |     |        | lshr_ln18   | lshr   | auto_pipe | 0       |
+|     shl_ln18_fu_130_p2          |     |        | shl_ln18    | shl    | auto_pipe | 0       |
+|     val_fu_156_p3               |     |        | val         | select | auto_sel  | 0       |
+|     sub_ln59_fu_164_p2          |     |        | sub_ln59    | sub    | fabric    | 0       |
+|     ap_return                   |     |        | result_1    | select | auto_sel  | 0       |
++---------------------------------+-----+--------+-------------+--------+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name              | Usage     | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                   |           |           |      |      |        |          |      |         | Banks            |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+| + pack_int8       |           |           | 0    | 0    |        |          |      |         |                  |
+|   control_s_axi_U | interface | s_axilite |      |      |        |          |      |         |                  |
++-------------------+-----------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+--------------------------------------------+------------------------------------------+
+| Type      | Options                                    | Location                                 |
++-----------+--------------------------------------------+------------------------------------------+
+| interface | axis port=in_stream                        | kernel.cpp:17 in pack_int8, in_stream    |
+| interface | axis port=out_stream                       | kernel.cpp:18 in pack_int8, out_stream   |
+| interface | s_axilite port=num_elements bundle=control | kernel.cpp:19 in pack_int8, num_elements |
+| interface | s_axilite port=return bundle=control       | kernel.cpp:20 in pack_int8, return       |
+| pipeline  | II=1                                       | kernel.cpp:25 in pack_int8               |
++-----------+--------------------------------------------+------------------------------------------+
+
+

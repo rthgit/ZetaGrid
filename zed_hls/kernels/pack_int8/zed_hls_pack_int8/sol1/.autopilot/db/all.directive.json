@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "pack_int8",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "pack_int8"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/PC/Desktop/cpu-da/zed_hls/kernels/pack_int8/build.tcl",
+    "sourceLine": 18,
+    "success": true
+  }
+]

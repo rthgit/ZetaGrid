@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "pack_int4_transpose",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "pack_int4_transpose"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "C:/Users/PC/Desktop/cpu-da/zed_hls/kernels/pack_int4_transpose/build.tcl",
+    "sourceLine": 22,
+    "success": true
+  }
+]

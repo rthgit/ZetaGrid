@@ -180,9 +180,8 @@ Commit hash + environment; tokenizer hash; dataset manifest + split IDs; full tr
 ---
 
 **Citation:**  
-De Luca, C. Q. (2026). *RTH-LM: A Fractal Temporal Convolutional Language Model*. RTH Italia. Repository: [https://github.com/rthgit/ZetaGrid](https://github.com/rthgit/ZetaGrid)
-
----
-
-**Contact:**  
-[info@rthitalia.com](mailto:info@rthitalia.com) | RTH Italia
+De Luca, C. Q. (2026). *RTH-LM: A Fractal Temporal Convolutional Language Model*. RTH Italia.  
+**DOI:** [https://doi.org/10.6084/m9.figshare.31376560](https://doi.org/10.6084/m9.figshare.31376560)  
+**Repository:** [https://github.com/rthgit/ZetaGrid](https://github.com/rthgit/ZetaGrid)  
+**Model Hub:** [https://huggingface.co/RthItalia/Rth-lm-25b](https://huggingface.co/RthItalia/Rth-lm-25b)  
+**Contact:** [info@rthitalia.com](mailto:info@rthitalia.com) | RTH Italia

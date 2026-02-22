@@ -1,0 +1,92 @@
+{
+  "0": {
+    "basicblocks": 13,
+    "calls": "5",
+    "file": "kernel.cpp",
+    "fileloc": 16,
+    "instructions": 92,
+    "loads": {
+      "L": 4
+    },
+    "name": "pack_int8",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 2467
+  },
+  "1": {
+    "basicblocks": 16,
+    "calls": "4 2 3 3 6 6",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 133,
+    "loads": {
+      "L": 1
+    },
+    "name": "generic_cast_IEEE754<signed char, AP_TRN_ZERO, float>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 2146
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 340,
+    "instructions": 24,
+    "name": "mantissa",
+    "total_instructions": 178
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 316,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 283,
+    "instructions": 55,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 318
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 49,
+    "instructions": 2,
+    "name": "__hls_fptosi_float_i8",
+    "total_instructions": 2150
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 349,
+    "instructions": 4,
+    "name": "__signbit",
+    "total_instructions": 9
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<signed char, float>",
+    "total_instructions": 2148
+  }
+}

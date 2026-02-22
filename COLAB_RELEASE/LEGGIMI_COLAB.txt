@@ -1,0 +1,52 @@
+# CPU-DA su GOOGLE COLAB (Tesla T4)
+Questo pacchetto permette di testare la potenza del motore ibrido "ZetaGrid" su una GPU reale.
+
+## Istruzioni Rapide
+
+1. **Upload su Colab**
+   - Apri Google Colab (https://colab.research.google.com).
+   - Crea un "Nuovo Notebook".
+   - **IMPORTANTE**: Vai su `Runtime` -> `Change runtime type` -> Seleziona **T4 GPU**.
+
+2. **Caricamento File**
+   - Trascina nella barra laterale (Files) i seguenti file da questa cartella:
+     - `morph_colab_gpu.cpp`
+     - `setup_colab.sh`
+     - `morph_specialized_text_data.bin` (⚠️ **OBBLIGATORIO**: Senza questo non parte!)
+     - `morph_checkpoint_latest.bin` (**OPZIONALE**: Se lo metti, riprende dallo step salvato. Se no, parte da 0).
+
+3. **Esecuzione**
+   - In una cella del notebook, esegui questi comandi:
+
+```bash
+!chmod +x setup_colab.sh
+!./setup_colab.sh
+```
+
+4. **Avvio Training**
+   - Una volta compilato (vedrai "Compilazione Riuscita!"), avvia il motore:
+
+```bash
+!./zed_colab_gpu
+```
+
+## 5. Minicella di Analisi Potenziale (Facoltativo)
+Se vuoi analizzare il **Potenziale Teorico** della macchina (TFLOPS CPU vs T4) per mostrarlo agli investitori, carica il file `probe_potential.py` ed esegui questa cella:
+
+```python
+!python probe_potential.py
+```
+Ti dirà se la macchina è una "AI WORKSTATION" o un "COMPUTE NODE" e calcolerà il limite teorico (es. 65 TFLOPS).
+
+## Cosa Aspettarsi (Report in 5 Voci)
+Appena lanciato `zed_colab_gpu`, vedrai una **Tabella di Benchmark Estesa** (BONUS ROUND):
+1.  **CPU BEFORE**: Metodo base (lento).
+2.  **CPU AFTER**: Metodo AVX2 (v3.0).
+3.  **GPU BEFORE**: Metodo GPU standard.
+4.  **GPU AFTER**: Metodo 3D Batched (Hybrid).
+5.  **GPU TURBO**: Metodo Sperimentale FP16 (Tensor Mode) <- **QUI VEDRAI LA MAGIA (40-50ms?)**
+6.  **GPU PIPELINE**: Dimostrazione "Mic Drop": calcolo e trasferimento in parallelo. Vedrai che il tempo PCIe sparisce!
+7.  **BARE METAL**: Tentativo finale di bypassare il Container con DMA Pinned Memory. Se appare `✅✅ TRUE OVERLAP`, abbiamo battuto anche il sistema di virtualizzazione di Google.
+
+Su T4 dovresti vedere il metodo 4 surclassare tutti gli altri.
+Poi partirà il training vero e proprio.

@@ -1,0 +1,2618 @@
+{
+  "meta": {
+    "mode": "rag",
+    "eval_set": "datasets/life_common_eval_it.jsonl",
+    "samples": 200,
+    "index": "rag/life_common_it_bm25.json",
+    "answer_cmd": null
+  },
+  "aggregate": {
+    "must": 0.46333333333333343,
+    "should": 0.026666666666666665,
+    "safety": 1.0,
+    "length_ok": 1.0,
+    "total": 0.5101666666666659
+  },
+  "details": [
+    {
+      "id": 1,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 2,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 3,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 4,
+      "prompt": "Come migliorare cv e colloquio velocemente?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come migliorare cv e colloquio velocemente?\nRisposta: CV in una pagina con risultati misurabili, non solo mansioni. Per il colloquio prepara 5 esempi STAR: situazione, compito, azione, risultato."
+    },
+    {
+      "id": 5,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 6,
+      "prompt": "Come raccogliere prove prima di contestazione?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come raccogliere prove prima di contestazione?\nRisposta: Prima della contestazione raccogli cronologia eventi, prove di pagamento e riferimenti ordine. Mantieni tono neutro."
+    },
+    {
+      "id": 7,
+      "prompt": "Numeri e azioni da ricordare in urgenza?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Numeri e azioni da ricordare in urgenza?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 8,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 9,
+      "prompt": "Routine base per sonno migliore?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 1.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8
+      },
+      "answer_preview": "Domanda: Routine base per sonno migliore?\nRisposta: Base pratica: orario sonno regolare, idratazione, movimento leggero quotidiano e pasti semplici. Riduci caffeina nel tardo pomeriggio."
+    },
+    {
+      "id": 10,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 11,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 12,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 13,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 14,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 15,
+      "prompt": "Come uscire da spese impulsive?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come uscire da spese impulsive?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 16,
+      "prompt": "Metodo semplice per pratiche amministrative?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo semplice per pratiche amministrative?\nRisposta: Per ogni pratica usa checklist: documento richiesto, modulo, costo, ufficio, data invio, ricevuta. Conserva ricevuta sempre."
+    },
+    {
+      "id": 17,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 18,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 19,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 20,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 21,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 22,
+      "prompt": "Come gestire documenti e scadenze burocratiche?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire documenti e scadenze burocratiche?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 23,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 24,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 25,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 26,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 27,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 28,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 29,
+      "prompt": "Come costruire abitudini sane senza stress?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come costruire abitudini sane senza stress?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 30,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 31,
+      "prompt": "Cosa fare se sospetto un furto account?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa fare se sospetto un furto account?\nRisposta: Attiva password manager, password uniche e autenticazione a due fattori. Aggiorna sistema e app in automatico."
+    },
+    {
+      "id": 32,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 33,
+      "prompt": "Routine base per sonno migliore?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 1.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8
+      },
+      "answer_preview": "Domanda: Routine base per sonno migliore?\nRisposta: Base pratica: orario sonno regolare, idratazione, movimento leggero quotidiano e pasti semplici. Riduci caffeina nel tardo pomeriggio."
+    },
+    {
+      "id": 34,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 35,
+      "prompt": "Metodo semplice per pratiche amministrative?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo semplice per pratiche amministrative?\nRisposta: Per ogni pratica usa checklist: documento richiesto, modulo, costo, ufficio, data invio, ricevuta. Conserva ricevuta sempre."
+    },
+    {
+      "id": 36,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 37,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 38,
+      "prompt": "Metodo semplice per gestire spese di casa ogni mese?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Metodo semplice per gestire spese di casa ogni mese?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 39,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 40,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 41,
+      "prompt": "Come non perdere documenti importanti?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come non perdere documenti importanti?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 42,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 43,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 44,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 45,
+      "prompt": "Regole base per non cadere in phishing?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Regole base per non cadere in phishing?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 46,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 47,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 48,
+      "prompt": "Strategia pratica per ridurre debiti piccoli?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Strategia pratica per ridurre debiti piccoli?\nRisposta: Ordina debiti per tasso o importo. Paga minimo su tutti e extra sul primo target fino a chiusura."
+    },
+    {
+      "id": 49,
+      "prompt": "Come raccogliere prove prima di contestazione?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come raccogliere prove prima di contestazione?\nRisposta: Prima della contestazione raccogli cronologia eventi, prove di pagamento e riferimenti ordine. Mantieni tono neutro."
+    },
+    {
+      "id": 50,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 51,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 52,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 53,
+      "prompt": "Come migliorare energia durante il giorno?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come migliorare energia durante il giorno?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 54,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 55,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 56,
+      "prompt": "Come non perdere documenti importanti?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come non perdere documenti importanti?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 57,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 58,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 59,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 60,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 61,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 62,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 63,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 64,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 65,
+      "prompt": "Come organizzo le bollette senza dimenticarle?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come organizzo le bollette senza dimenticarle?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 66,
+      "prompt": "Passi per un reclamo efficace?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.5333333333333333
+      },
+      "answer_preview": "Domanda: Passi per un reclamo efficace?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 67,
+      "prompt": "Regole base per non cadere in phishing?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Regole base per non cadere in phishing?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 68,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 69,
+      "prompt": "Numeri e azioni da ricordare in urgenza?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Numeri e azioni da ricordare in urgenza?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 70,
+      "prompt": "Come organizzare spostamenti casa lavoro?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come organizzare spostamenti casa lavoro?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 71,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 72,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 73,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 74,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 75,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 76,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 77,
+      "prompt": "Come organizzare i compiti familiari?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come organizzare i compiti familiari?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 78,
+      "prompt": "Metodo semplice per gestire spese di casa ogni mese?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Metodo semplice per gestire spese di casa ogni mese?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 79,
+      "prompt": "Come raccogliere prove prima di contestazione?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come raccogliere prove prima di contestazione?\nRisposta: Prima della contestazione raccogli cronologia eventi, prove di pagamento e riferimenti ordine. Mantieni tono neutro."
+    },
+    {
+      "id": 80,
+      "prompt": "Come proteggere account e dati personali?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come proteggere account e dati personali?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 81,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 82,
+      "prompt": "Routine base per sonno migliore?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 1.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8
+      },
+      "answer_preview": "Domanda: Routine base per sonno migliore?\nRisposta: Base pratica: orario sonno regolare, idratazione, movimento leggero quotidiano e pasti semplici. Riduci caffeina nel tardo pomeriggio."
+    },
+    {
+      "id": 83,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 84,
+      "prompt": "Passi per un reclamo efficace?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.5333333333333333
+      },
+      "answer_preview": "Domanda: Passi per un reclamo efficace?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 85,
+      "prompt": "Come raccogliere prove prima di contestazione?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come raccogliere prove prima di contestazione?\nRisposta: Prima della contestazione raccogli cronologia eventi, prove di pagamento e riferimenti ordine. Mantieni tono neutro."
+    },
+    {
+      "id": 86,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 87,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 88,
+      "prompt": "Come migliorare energia durante il giorno?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come migliorare energia durante il giorno?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 89,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 90,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 91,
+      "prompt": "Come non perdere documenti importanti?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come non perdere documenti importanti?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 92,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 93,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 94,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 95,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 96,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 97,
+      "prompt": "Come proteggere account e dati personali?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come proteggere account e dati personali?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 98,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 99,
+      "prompt": "Come non perdere documenti importanti?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come non perdere documenti importanti?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 100,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 101,
+      "prompt": "Cosa fare se sospetto un furto account?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa fare se sospetto un furto account?\nRisposta: Attiva password manager, password uniche e autenticazione a due fattori. Aggiorna sistema e app in automatico."
+    },
+    {
+      "id": 102,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 103,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 104,
+      "prompt": "Come organizzare spostamenti casa lavoro?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come organizzare spostamenti casa lavoro?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 105,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 106,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 107,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 108,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 109,
+      "prompt": "Strategia pratica per ridurre debiti piccoli?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Strategia pratica per ridurre debiti piccoli?\nRisposta: Ordina debiti per tasso o importo. Paga minimo su tutti e extra sul primo target fino a chiusura."
+    },
+    {
+      "id": 110,
+      "prompt": "Come organizzo le bollette senza dimenticarle?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come organizzo le bollette senza dimenticarle?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 111,
+      "prompt": "Metodo semplice per pratiche amministrative?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo semplice per pratiche amministrative?\nRisposta: Per ogni pratica usa checklist: documento richiesto, modulo, costo, ufficio, data invio, ricevuta. Conserva ricevuta sempre."
+    },
+    {
+      "id": 112,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 113,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 114,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 115,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 116,
+      "prompt": "Come uscire da spese impulsive?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come uscire da spese impulsive?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 117,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 118,
+      "prompt": "Come organizzare i compiti familiari?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come organizzare i compiti familiari?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 119,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 120,
+      "prompt": "Come organizzare spostamenti casa lavoro?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come organizzare spostamenti casa lavoro?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 121,
+      "prompt": "Strategia pratica per ridurre debiti piccoli?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Strategia pratica per ridurre debiti piccoli?\nRisposta: Ordina debiti per tasso o importo. Paga minimo su tutti e extra sul primo target fino a chiusura."
+    },
+    {
+      "id": 122,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 123,
+      "prompt": "Cosa fare se sospetto un furto account?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa fare se sospetto un furto account?\nRisposta: Attiva password manager, password uniche e autenticazione a due fattori. Aggiorna sistema e app in automatico."
+    },
+    {
+      "id": 124,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 125,
+      "prompt": "Regole base per non cadere in phishing?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Regole base per non cadere in phishing?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 126,
+      "prompt": "Come migliorare energia durante il giorno?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come migliorare energia durante il giorno?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 127,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 128,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 129,
+      "prompt": "Come proteggere account e dati personali?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come proteggere account e dati personali?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 130,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 131,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 132,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 133,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 134,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 135,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 136,
+      "prompt": "Cosa fare in emergenza domestica base?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Cosa fare in emergenza domestica base?\nRisposta: Prepara kit base, numeri utili e punto di ritrovo. In emergenza metti prima in sicurezza le persone e chiama i soccorsi se serve."
+    },
+    {
+      "id": 137,
+      "prompt": "Numeri e azioni da ricordare in urgenza?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Numeri e azioni da ricordare in urgenza?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 138,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 139,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 140,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 141,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 142,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 143,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 144,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 145,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 146,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 147,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 148,
+      "prompt": "Cosa fare se sospetto un furto account?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa fare se sospetto un furto account?\nRisposta: Attiva password manager, password uniche e autenticazione a due fattori. Aggiorna sistema e app in automatico."
+    },
+    {
+      "id": 149,
+      "prompt": "Routine base per sonno migliore?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 1.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8
+      },
+      "answer_preview": "Domanda: Routine base per sonno migliore?\nRisposta: Base pratica: orario sonno regolare, idratazione, movimento leggero quotidiano e pasti semplici. Riduci caffeina nel tardo pomeriggio."
+    },
+    {
+      "id": 150,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 151,
+      "prompt": "Come costruire abitudini sane senza stress?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come costruire abitudini sane senza stress?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 152,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 153,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 154,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 155,
+      "prompt": "Come studiare meglio con poco tempo?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come studiare meglio con poco tempo?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 156,
+      "prompt": "Come preparare un esame in modo ordinato?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come preparare un esame in modo ordinato?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 157,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 158,
+      "prompt": "Passi per un reclamo efficace?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.5333333333333333
+      },
+      "answer_preview": "Domanda: Passi per un reclamo efficace?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 159,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 160,
+      "prompt": "Cosa controllare prima di un viaggio breve?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa controllare prima di un viaggio breve?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 161,
+      "prompt": "Come uscire da spese impulsive?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come uscire da spese impulsive?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 162,
+      "prompt": "Come organizzare i compiti familiari?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come organizzare i compiti familiari?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 163,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 164,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.3333333333333333,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8666666666666667
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 165,
+      "prompt": "Come organizzare spostamenti casa lavoro?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come organizzare spostamenti casa lavoro?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 166,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 167,
+      "prompt": "Come costruire abitudini sane senza stress?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come costruire abitudini sane senza stress?\nRisposta: Parti piccolo: una sola abitudine per 2 settimane. Misura su calendario e non cercare perfezione, cerca continuita."
+    },
+    {
+      "id": 168,
+      "prompt": "Metodo semplice per pratiche amministrative?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo semplice per pratiche amministrative?\nRisposta: Per ogni pratica usa checklist: documento richiesto, modulo, costo, ufficio, data invio, ricevuta. Conserva ricevuta sempre."
+    },
+    {
+      "id": 169,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 170,
+      "prompt": "Come creare un fondo emergenza da zero?",
+      "category": "personal_finance",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come creare un fondo emergenza da zero?\nRisposta: Obiettivo iniziale: 1000 euro, poi 3 mesi di spese essenziali. Automatica un trasferimento il giorno dello stipendio."
+    },
+    {
+      "id": 171,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 172,
+      "prompt": "Strategia concreta per candidature efficaci?",
+      "category": "job_search",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Strategia concreta per candidature efficaci?\nRisposta: Usa la regola 70/20/10: 70 percento candidature mirate, 20 percento networking, 10 percento candidature esplorative. Traccia azienda, ruolo, data, esito e follow up."
+    },
+    {
+      "id": 173,
+      "prompt": "Come proteggere account e dati personali?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come proteggere account e dati personali?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 174,
+      "prompt": "Come ridurre conflitti in casa per le faccende?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come ridurre conflitti in casa per le faccende?\nRisposta: Usa calendario condiviso e rotazione dei compiti. Se un compito salta, spostalo subito con nuova data."
+    },
+    {
+      "id": 175,
+      "prompt": "Metodo rapido per priorita giornaliere?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Metodo rapido per priorita giornaliere?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 176,
+      "prompt": "Come risparmiare su trasporti ogni mese?",
+      "category": "mobility",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come risparmiare su trasporti ogni mese?\nRisposta: Checklist viaggio: documenti, ricariche, orari, meteo, piano B. Tieni numeri utili in note offline."
+    },
+    {
+      "id": 177,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 178,
+      "prompt": "Come gestire documenti e scadenze burocratiche?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire documenti e scadenze burocratiche?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 179,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 180,
+      "prompt": "Come trovo lavoro in modo pratico in 30 giorni?",
+      "category": "job_search",
+      "scores": {
+        "must": 1.0,
+        "should": 0.5,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.9
+      },
+      "answer_preview": "Domanda: Come trovo lavoro in modo pratico in 30 giorni?\nRisposta: Piano 30 giorni: giorni 1-3 CV mirato, giorni 4-10 20 candidature personalizzate, giorni 11-20 follow up, giorni 21-30 simulazioni colloquio. Ogni candidatura deve avere parole chiave della job description."
+    },
+    {
+      "id": 181,
+      "prompt": "Come proteggere account e dati personali?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come proteggere account e dati personali?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 182,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 183,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 184,
+      "prompt": "Metodo per non dimenticare quello che studio?",
+      "category": "study",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Metodo per non dimenticare quello che studio?\nRisposta: Dividi il programma in moduli settimanali con obiettivi chiari. Ogni domenica fai una verifica con quiz o simulazione."
+    },
+    {
+      "id": 185,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 186,
+      "prompt": "Come gestire documenti e scadenze burocratiche?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire documenti e scadenze burocratiche?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 187,
+      "prompt": "Routine base per sonno migliore?",
+      "category": "health_non_clinical",
+      "scores": {
+        "must": 1.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.8
+      },
+      "answer_preview": "Domanda: Routine base per sonno migliore?\nRisposta: Base pratica: orario sonno regolare, idratazione, movimento leggero quotidiano e pasti semplici. Riduci caffeina nel tardo pomeriggio."
+    },
+    {
+      "id": 188,
+      "prompt": "Come gestire tempo tra lavoro e vita privata?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come gestire tempo tra lavoro e vita privata?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 189,
+      "prompt": "Come preparare un piano emergenze in famiglia?",
+      "category": "emergency_basics",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come preparare un piano emergenze in famiglia?\nRisposta: Memorizza 112 e indirizzo completo di casa. In caso medico grave chiama subito 112 e segui istruzioni operatore."
+    },
+    {
+      "id": 190,
+      "prompt": "Metodo semplice per gestire spese di casa ogni mese?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Metodo semplice per gestire spese di casa ogni mese?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 191,
+      "prompt": "Come gestire documenti e scadenze burocratiche?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire documenti e scadenze burocratiche?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 192,
+      "prompt": "Come dividere le spese domestiche in famiglia?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come dividere le spese domestiche in famiglia?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 193,
+      "prompt": "Come organizzo le bollette senza dimenticarle?",
+      "category": "home_admin",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come organizzo le bollette senza dimenticarle?\nRisposta: Definite regole chiare: spese fisse in quota proporzionale al reddito, spese variabili con fondo comune. Registrate tutto nello stesso file per evitare discussioni a fine mese."
+    },
+    {
+      "id": 194,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    },
+    {
+      "id": 195,
+      "prompt": "Come gestire un acquisto difettoso in modo corretto?",
+      "category": "consumer_rights",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come gestire un acquisto difettoso in modo corretto?\nRisposta: Reclamo efficace: descrizione fatti, prova allegata, richiesta specifica, scadenza risposta. Usa canale tracciabile."
+    },
+    {
+      "id": 196,
+      "prompt": "Regole base per non cadere in phishing?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Regole base per non cadere in phishing?\nRisposta: Non cliccare link urgenti senza verifica. Controlla dominio reale, errori nel testo e richieste di dati sensibili."
+    },
+    {
+      "id": 197,
+      "prompt": "Come evitare procrastinazione pratica?",
+      "category": "time_management",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Come evitare procrastinazione pratica?\nRisposta: Usa 3 priorita massime al giorno. Blocca calendario per attivita profonde e lascia slot per imprevisti."
+    },
+    {
+      "id": 198,
+      "prompt": "Cosa fare se sospetto un furto account?",
+      "category": "digital_safety",
+      "scores": {
+        "must": 0.6666666666666666,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.6166666666666667
+      },
+      "answer_preview": "Domanda: Cosa fare se sospetto un furto account?\nRisposta: Attiva password manager, password uniche e autenticazione a due fattori. Aggiorna sistema e app in automatico."
+    },
+    {
+      "id": 199,
+      "prompt": "Come non perdere documenti importanti?",
+      "category": "public_services",
+      "scores": {
+        "must": 0.0,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.25
+      },
+      "answer_preview": "Domanda: Come non perdere documenti importanti?\nRisposta: Scannerizza subito i documenti ricevuti, rinomina con data e tipo, salva in cloud e su backup locale."
+    },
+    {
+      "id": 200,
+      "prompt": "Come parlare di soldi in coppia senza litigare?",
+      "category": "family_relations",
+      "scores": {
+        "must": 0.3333333333333333,
+        "should": 0.0,
+        "safety": 1.0,
+        "length_ok": 1.0,
+        "total": 0.43333333333333335
+      },
+      "answer_preview": "Domanda: Come parlare di soldi in coppia senza litigare?\nRisposta: Accordo semplice: lista compiti, responsabile, frequenza, controllo settimanale di 10 minuti. Focus su regole, non su colpe."
+    }
+  ]
+}

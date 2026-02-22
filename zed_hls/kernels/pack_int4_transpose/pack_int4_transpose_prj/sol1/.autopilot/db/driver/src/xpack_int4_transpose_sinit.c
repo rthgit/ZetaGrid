@@ -1,0 +1,79 @@
+// ==============================================================
+// Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+// Tool Version Limit: 2024.05
+// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+// 
+// ==============================================================
+#ifndef __linux__
+
+#include "xstatus.h"
+#ifdef SDT
+#include "xparameters.h"
+#endif
+#include "xpack_int4_transpose.h"
+
+extern XPack_int4_transpose_Config XPack_int4_transpose_ConfigTable[];
+
+#ifdef SDT
+XPack_int4_transpose_Config *XPack_int4_transpose_LookupConfig(UINTPTR BaseAddress) {
+	XPack_int4_transpose_Config *ConfigPtr = NULL;
+
+	int Index;
+
+	for (Index = (u32)0x0; XPack_int4_transpose_ConfigTable[Index].Name != NULL; Index++) {
+		if (!BaseAddress || XPack_int4_transpose_ConfigTable[Index].Control_BaseAddress == BaseAddress) {
+			ConfigPtr = &XPack_int4_transpose_ConfigTable[Index];
+			break;
+		}
+	}
+
+	return ConfigPtr;
+}
+
+int XPack_int4_transpose_Initialize(XPack_int4_transpose *InstancePtr, UINTPTR BaseAddress) {
+	XPack_int4_transpose_Config *ConfigPtr;
+
+	Xil_AssertNonvoid(InstancePtr != NULL);
+
+	ConfigPtr = XPack_int4_transpose_LookupConfig(BaseAddress);
+	if (ConfigPtr == NULL) {
+		InstancePtr->IsReady = 0;
+		return (XST_DEVICE_NOT_FOUND);
+	}
+
+	return XPack_int4_transpose_CfgInitialize(InstancePtr, ConfigPtr);
+}
+#else
+XPack_int4_transpose_Config *XPack_int4_transpose_LookupConfig(u16 DeviceId) {
+	XPack_int4_transpose_Config *ConfigPtr = NULL;
+
+	int Index;
+
+	for (Index = 0; Index < XPAR_XPACK_INT4_TRANSPOSE_NUM_INSTANCES; Index++) {
+		if (XPack_int4_transpose_ConfigTable[Index].DeviceId == DeviceId) {
+			ConfigPtr = &XPack_int4_transpose_ConfigTable[Index];
+			break;
+		}
+	}
+
+	return ConfigPtr;
+}
+
+int XPack_int4_transpose_Initialize(XPack_int4_transpose *InstancePtr, u16 DeviceId) {
+	XPack_int4_transpose_Config *ConfigPtr;
+
+	Xil_AssertNonvoid(InstancePtr != NULL);
+
+	ConfigPtr = XPack_int4_transpose_LookupConfig(DeviceId);
+	if (ConfigPtr == NULL) {
+		InstancePtr->IsReady = 0;
+		return (XST_DEVICE_NOT_FOUND);
+	}
+
+	return XPack_int4_transpose_CfgInitialize(InstancePtr, ConfigPtr);
+}
+#endif
+
+#endif
+

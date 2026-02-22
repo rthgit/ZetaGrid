@@ -1,0 +1,38 @@
+{
+    "0": {
+        "name": "pack_int4_transpose",
+        "file": "kernel.cpp",
+        "fileloc": "15",
+        "instructions": "110",
+        "total_instructions": "315",
+        "calls": "1",
+        "basicblocks": "4",
+        "loads": {
+            "L": "33"
+        },
+        "stores": {
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "1": {
+        "name": "pack_int4_transpose_Pipeline_read_loop",
+        "file": "kernel.cpp",
+        "fileloc": "28",
+        "instructions": "205",
+        "total_instructions": "205",
+        "calls": "",
+        "basicblocks": "37",
+        "loads": {
+            "L": "33"
+        },
+        "stores": {
+            "L": "34"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

@@ -1,0 +1,243 @@
+
+
+================================================================
+== Vitis HLS Report for 'pack_int8_Pipeline_pack_loop'
+================================================================
+* Date:           Sun Jan 25 12:59:18 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        zed_hls_pack_int8
+* Solution:       sol1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  4.00 ns|  2.596 ns|     1.08 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+    |   Latency (cycles)   |  Latency (absolute)  |     Interval     |                    Pipeline                   |
+    |   min   |     max    |    min   |    max    | min |     max    |                      Type                     |
+    +---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+    |        2|  2147483635|  8.000 ns|  8.590 sec|    1|  2147483634|  loop auto-rewind stp(delay=0 clock cycles(s))|
+    +---------+------------+----------+-----------+-----+------------+-----------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------+-----------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                  |                       |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |             Instance             |         Module        |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +----------------------------------+-----------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_p_hls_fptosi_float_i8_fu_120  |p_hls_fptosi_float_i8  |        1|        1|  4.000 ns|  4.000 ns|    1|    1|      yes|
+        +----------------------------------+-----------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +-------------+---------+------------+----------+-----------+-----------+---------------+----------+
+        |             |   Latency (cycles)   | Iteration|  Initiation Interval  |      Trip     |          |
+        |  Loop Name  |   min   |     max    |  Latency |  achieved |   target  |     Count     | Pipelined|
+        +-------------+---------+------------+----------+-----------+-----------+---------------+----------+
+        |- pack_loop  |        0|  2147483633|        18|         16|          1|  0 ~ 134217727|       yes|
+        +-------------+---------+------------+----------+-----------+-----------+---------------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|      211|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|       11|      399|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        0|      234|    -|
+|Register             |        -|     -|      203|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      214|      844|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1440|  2280|   788160|   394080|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4320|  6840|  2364480|  1182240|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------+-----------------------+---------+----+----+-----+-----+
+    |             Instance             |         Module        | BRAM_18K| DSP| FF | LUT | URAM|
+    +----------------------------------+-----------------------+---------+----+----+-----+-----+
+    |grp_p_hls_fptosi_float_i8_fu_120  |p_hls_fptosi_float_i8  |        0|   0|  11|  399|    0|
+    +----------------------------------+-----------------------+---------+----+----+-----+-----+
+    |Total                             |                       |        0|   0|  11|  399|    0|
+    +----------------------------------+-----------------------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |                Variable Name               | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |i_1_fu_151_p2                               |         +|   0|  0|  35|          28|           1|
+    |ap_block_pp0_stage0_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage0_11001_ignoreCallOp113   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage10_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage10_11001_ignoreCallOp83   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage11_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage11_11001_ignoreCallOp88   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage12_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage12_11001_ignoreCallOp93   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage13_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage13_11001_ignoreCallOp98   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage14_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage14_11001_ignoreCallOp103  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage15_11001                  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage15_11001_ignoreCallOp108  |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage2_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage2_11001_ignoreCallOp43    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage3_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage3_11001_ignoreCallOp48    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage4_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage4_11001_ignoreCallOp53    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage5_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage5_11001_ignoreCallOp58    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage6_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage6_11001_ignoreCallOp63    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage7_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage7_11001_ignoreCallOp68    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage8_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage8_11001_ignoreCallOp73    |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage9_11001                   |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage9_11001_ignoreCallOp78    |       and|   0|  0|   2|           1|           1|
+    |ap_block_state10_pp0_stage9_iter0           |       and|   0|  0|   2|           1|           1|
+    |ap_block_state1_pp0_stage0_iter0            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_615                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_621                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_627                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_633                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_639                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_645                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_651                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_657                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_663                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_669                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_675                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_681                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_687                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_693                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_699                            |       and|   0|  0|   2|           1|           1|
+    |ap_condition_705                            |       and|   0|  0|   2|           1|           1|
+    |icmp_ln24_fu_145_p2                         |      icmp|   0|  0|  36|          29|          29|
+    |p_out_last_fu_157_p2                        |      icmp|   0|  0|  36|          29|          29|
+    |ap_block_pp0_stage1_01001                   |        or|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage1_11001                   |        or|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage1_11001_ignoreCallOp40    |        or|   0|  0|   2|           1|           1|
+    |ap_enable_pp0                               |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                       |          |   0|  0| 211|         138|         112|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------+----+-----------+-----+-----------+
+    |                Name                | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                           |  81|         17|    1|         17|
+    |ap_done_int                         |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0             |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0_reg         |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1             |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_2                |   9|          2|   28|         56|
+    |grp_p_hls_fptosi_float_i8_fu_120_x  |  81|         17|   32|        544|
+    |i_fu_74                             |   9|          2|   28|         56|
+    |in_stream_TDATA_blk_n               |   9|          2|    1|          2|
+    |out_stream_TDATA_blk_n              |   9|          2|    1|          2|
+    +------------------------------------+----+-----------+-----+-----------+
+    |Total                               | 234|         50|   95|        685|
+    +------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------+----+----+-----+-----------+
+    |                      Name                     | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                      |  16|   0|   16|          0|
+    |ap_done_reg                                    |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg                    |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                        |   1|   0|    1|          0|
+    |grp_p_hls_fptosi_float_i8_fu_120_ap_start_reg  |   1|   0|    1|          0|
+    |i8_10_reg_336                                  |   8|   0|    8|          0|
+    |i8_11_reg_341                                  |   8|   0|    8|          0|
+    |i8_12_reg_346                                  |   8|   0|    8|          0|
+    |i8_13_reg_351                                  |   8|   0|    8|          0|
+    |i8_14_reg_356                                  |   8|   0|    8|          0|
+    |i8_1_reg_291                                   |   8|   0|    8|          0|
+    |i8_2_reg_296                                   |   8|   0|    8|          0|
+    |i8_3_reg_301                                   |   8|   0|    8|          0|
+    |i8_4_reg_306                                   |   8|   0|    8|          0|
+    |i8_5_reg_311                                   |   8|   0|    8|          0|
+    |i8_6_reg_316                                   |   8|   0|    8|          0|
+    |i8_7_reg_321                                   |   8|   0|    8|          0|
+    |i8_8_reg_326                                   |   8|   0|    8|          0|
+    |i8_9_reg_331                                   |   8|   0|    8|          0|
+    |i8_reg_286                                     |   8|   0|    8|          0|
+    |i_fu_74                                        |  28|   0|   28|          0|
+    |icmp_ln24_reg_277                              |   1|   0|    1|          0|
+    |p_out_last_reg_281                             |   1|   0|    1|          0|
+    |p_out_last_reg_281_pp0_iter1_reg               |   1|   0|    1|          0|
+    |reg_129                                        |  32|   0|   32|          0|
+    +-----------------------------------------------+----+----+-----+-----------+
+    |Total                                          | 203|   0|  203|          0|
+    +-----------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+------------+------------------------------+--------------+
+|     RTL Ports     | Dir | Bits|  Protocol  |         Source Object        |    C Type    |
++-------------------+-----+-----+------------+------------------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|ap_rst             |   in|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|ap_start           |   in|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|ap_done            |  out|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|ap_idle            |  out|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|ap_ready           |  out|    1|  ap_ctrl_hs|  pack_int8_Pipeline_pack_loop|  return value|
+|in_stream_TVALID   |   in|    1|        axis|            in_stream_V_data_V|       pointer|
+|in_stream_TDATA    |   in|   32|        axis|            in_stream_V_data_V|       pointer|
+|out_stream_TREADY  |   in|    1|        axis|           out_stream_V_data_V|       pointer|
+|out_stream_TDATA   |  out|  128|        axis|           out_stream_V_data_V|       pointer|
+|num_packs          |   in|   29|     ap_none|                     num_packs|        scalar|
+|in_stream_TREADY   |  out|    1|        axis|            in_stream_V_last_V|       pointer|
+|in_stream_TLAST    |   in|    1|        axis|            in_stream_V_last_V|       pointer|
+|in_stream_TKEEP    |   in|    4|        axis|            in_stream_V_keep_V|       pointer|
+|in_stream_TSTRB    |   in|    4|        axis|            in_stream_V_strb_V|       pointer|
+|sub                |   in|   29|     ap_none|                           sub|        scalar|
+|out_stream_TVALID  |  out|    1|        axis|           out_stream_V_last_V|       pointer|
+|out_stream_TLAST   |  out|    1|        axis|           out_stream_V_last_V|       pointer|
+|out_stream_TKEEP   |  out|   16|        axis|           out_stream_V_keep_V|       pointer|
+|out_stream_TSTRB   |  out|   16|        axis|           out_stream_V_strb_V|       pointer|
++-------------------+-----+-----+------------+------------------------------+--------------+
+

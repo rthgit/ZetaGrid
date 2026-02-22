@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this model or code, please cite it as follows."
+authors:
+  - family-names: "De Luca"
+    given-names: "Christian Quintino"
+    affiliation: "RTH Italia"
+title: "RTH-LM: A Fractal Temporal Convolutional Language Model"
+version: 1.0
+date-released: 2026-02-12
+url: "https://github.com/rthgit/ZetaGrid"
+keywords:
+  - TCN
+  - Language Model
+  - Convolutional
+  - Fractal
+  - Quantization
+  - On-prem
+  - Green AI
+license: "CC-BY-NC-4.0"
+identifiers:
+  - type: doi
+    value: 10.6084/m9.figshare.31376560
+    description: "The official paper for RTH-LM on Figshare."
