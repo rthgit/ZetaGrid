@@ -16,7 +16,7 @@
 > **Key Specs:**
 > - **Model:** 25B Parameters (Genome core + Soul adapters).
 > - **Inference:** Linear complexity O(N).
-> - **Paper:** Published on Zenodo (DOI link).
+> - **Paper:** Published on Figshare (DOI: https://doi.org/10.6084/m9.figshare.31376560).
 > - **Weights:** Available on HF [RthItalia/Rth-lm-25b].
 > 
 > **Roadmap:**
@@ -43,7 +43,7 @@
 > 3/ Efficiency: Linear-time inference. 
 > Scaling to 120B/1T variants is in the works. Our goal? Fitting a 120B model on a single 80GB GPU via 2-bit quantization. 📉💻
 > 
-> 4/ Read the full technical paper on Zenodo: [Link]
+> 4/ Read the full technical paper on Figshare: https://doi.org/10.6084/m9.figshare.31376560
 > 
 > Download the weights & try the Gradio space on Hugging Face: [Link]
 > 
@@ -55,12 +55,12 @@
 **Servers:** Hugging Face Discord, Latent Space, LocalLLaMA.
 
 **Pitch (Showcase Channel):**
-> Hey guys! Just dropped **RTH-LM**, a 25B TCN-based model. It's a non-Transformer approach focusing on linear scaling for sequence length. We have a paper out on Zenodo and a live Gradio demo on HF. If you're into alternative architectures (No-Attention), check it out! 🌌🚀 [Link to HF]
+> Hey guys! Just dropped **RTH-LM**, a 25B TCN-based model. It's a non-Transformer approach focusing on linear scaling for sequence length. We have a paper out on Figshare and a live Gradio demo on HF. If you're into alternative architectures (No-Attention), check it out! 🌌🚀 [Link to HF]
 
 ---
 
 ### 📋 4. Final Launch Checklist
 - [ ] Hugging Face README updated? (✅ Premium version uploaded)
-- [ ] Zenodo Upload completed? (📥 DOI ready?)
+- [ ] Figshare upload completed? (DOI: https://doi.org/10.6084/m9.figshare.31376560)
 - [ ] HF Space is "Running"? (✅ Build finished)
 - [ ] GitHub README updated with all links? (✅ Done)

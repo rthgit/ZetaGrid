@@ -1,8 +1,8 @@
-# 📄 Paper Release: RTH-LM (Zenodo) & Architectural Deep-Dive
+# 📄 Paper Release: RTH-LM (Figshare) & Architectural Deep-Dive
 
 Hello Community! 🚀
 
-We are excited to share the official technical paper for **RTH-LM**, published on Zenodo. This marks the first major release of our **Fractal Gated Causal TCN** architecture.
+We are excited to share the official technical paper for **RTH-LM**, published on Figshare. This marks the first major release of our **Fractal Gated Causal TCN** architecture.
 
 Unlike traditional Transformers, RTH-LM eliminates the KV-cache pressure by using causal convolutions and a modular **Genome/Soul** design.
 

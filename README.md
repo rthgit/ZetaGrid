@@ -1,90 +1,83 @@
----
-license: other
-license_name: cc-by-nc-4.0-commercial
-license_link: LICENSE.md
-language:
-- en
-metrics:
-- perplexity
-- loss
-library_name: generic
-pipeline_tag: text-generation
-tags:
-- tcn
-- fractal
-- rth-lm
-- non-transformer
-- cpu-da
----
+# ZetaGrid / RTH-LM
 
-# 🌌 RTH-LM (25B) — Unified V2 Release
-![RTH Logo](rth_logo.png)
+Reference repository for RTH-LM, a non-Transformer language-model research line based on the ZetaGrid Fractal Gated Causal TCN architecture.
 
-**The Fractal TCN Language Model**
-*(Powered by ZetaGrid Architecture)*
+This GitHub repository is intentionally kept lightweight. Large model artifacts are published on Hugging Face, while the technical paper is published on Figshare.
 
-[![DOI](https://img.shields.io/badge/DOI-10.6084/m9.figshare.31376560-blue.svg)](https://doi.org/10.6084/m9.figshare.31376560)
-[![License: Research](https://img.shields.io/badge/License-CC_BY_NC_4.0-red.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![Model Size: 25B](https://img.shields.io/badge/Model%20Size-25B-green.svg)](https://huggingface.co/rth-italia/rth-lm-25b)
-[![Architecture: TCN](https://img.shields.io/badge/Architecture-Fractal_TCN-purple.svg)](https://doi.org/10.6084/m9.figshare.31376560)
+## Published Artifacts
 
----
+| Artifact | Purpose | Location |
+| --- | --- | --- |
+| RTH-LM 25B | General language model release | https://huggingface.co/RthItalia/Rth-lm-25b |
+| RTH-Code 25B | Code-specialist Soul release | https://huggingface.co/RthItalia/Rth-lm-code-25b |
+| Technical paper | Architecture and feasibility report | https://doi.org/10.6084/m9.figshare.31376560 |
+| Source repository | ZetaGrid scripts, docs, and reference tooling | https://github.com/rthgit/ZetaGrid |
 
-## 🛑 Beyond Transformers. The Fractal Future.
+## Repository Scope
 
-**RTH-LM 25B** is a breakthrough in efficiency. It proves that you can build intelligence without the quadratic overhead of Attention, using a **Gated Causal Temporal Convolutional Network (TCN)**.
+This repository should contain:
 
-- **128 Fractal Layers:** The V2 release expands the physical 32-layer seed into a 128-layer "Fractal" model, reaching 25B parameter capacity.
-- **2-bit Quantized:** Designed to be resilient to extreme compression. The 50GB model fits into **~6.7GB** using QULP 2-bit quantization.
-- **Green & Sustainable:** Optimized for local hardware and CPUs.
+- Architecture and inference source code.
+- Quantization/conversion utilities.
+- Technical documentation and model cards.
+- Small configuration files and release notes.
+- Public diagrams, logos, and lightweight metadata.
 
----
+This repository should not contain:
 
-## 🧬 Architecture (ZetaGrid)
+- Full model weights (`.pt`, `.safetensors`, `.gguf`, `.qulp`, `.npy`).
+- ONNX external tensor dumps or generated ONNX working directories.
+- Local benchmark output, release zips, caches, or temporary deployment files.
 
-RTH-LM abandons the quadratic complexity of Attention for the linear efficiency of **TCNs**.
+Large artifacts belong on Hugging Face model repositories. Paper and presentation artifacts belong on Figshare or in small exported documentation form.
 
-### 1. The Unified Model (v2)
-In the V2 release, the "Genome" (base intelligence) and "Soul" (learned adapters) are merged. You no longer need separate files—just the sharded safetensors or a single GGUF.
+## Current Public Releases
 
-### 2. Fractal Scaling
-We scale the 7B seed to 25B by "tiling" the genome across 128 layers. This creates a massive memory-efficient model that captures long-range syntax with constant memory per step.
+### RTH-LM 25B
 
----
+RTH-LM is an experimental Fractal Gated Causal TCN language model. It is designed to test whether a non-attention architecture can provide useful language-model behavior with lower inference memory pressure than Transformer-style systems.
 
-## 🚀 Usage
+Key published claims should be read as early research evidence, not as frontier-model parity:
 
-### ⚙️ Option 1: Native Python (Best for Research)
-Clone the repo and run the optimized v2 inference script (supports sharded safetensors).
+- 7B physical Genome / 25B effective fractal capacity.
+- Genome/Soul separation for reusable core weights and small trainable specialization artifacts.
+- QULP 2-bit quantization path for low-memory experimentation.
+- Initial training-loss evidence from constrained data and compute.
 
-```bash
-git clone https://github.com/rthgit/ZetaGrid
-cd ZetaGrid
-python RTH_LM_INFERENCE_v2.py --model "/path/to/rth_lm_25b_v4_sharded"
-```
+Model card: [ZETAGRID_25B_CARD.md](ZETAGRID_25B_CARD.md)
 
-### 📦 Option 2: GGUF & Ollama (Best for Users)
-The model is available in GGUF format for use with `llama.cpp` and `Ollama`.
+### RTH-Code 25B
+
+RTH-Code 25B is a code-specialist Soul for the RTH-LM / ZetaGrid architecture. Its Hugging Face card is maintained separately so the GitHub README stays focused on the repository.
+
+Code model card draft: [RTH_CODE_25B_CARD.md](RTH_CODE_25B_CARD.md)
+
+## Quick Start
+
+The reference Python script expects model artifacts to be present locally. Download the required files from the Hugging Face model repositories before running inference.
 
 ```bash
-# Generate Modelfile
-ollama create rth-lm -f Modelfile_RTH-LM
-ollama run rth-lm "Tell me a story about a digital soul"
+python ZETAGRID_INFERENCE.py
 ```
 
----
+The current script is a research/demo entry point, not a packaged Python library. Paths and hardware assumptions may need adjustment for your machine.
 
-## ⚖️ License & Commercialization
+## Citation
 
-**RTH-LM is Dual-Licensed:**
+```bibtex
+@techreport{deluca2026rthlm,
+  author      = {De Luca, Christian Quintino},
+  title       = {RTH-LM: A Fractal Temporal Convolutional Language Model},
+  institution = {RTH Italia (Research & Technology Hub)},
+  year        = {2026},
+  url         = {https://github.com/rthgit/ZetaGrid},
+  doi         = {10.6084/m9.figshare.31376560},
+  note        = {Non-commercial license. Contact RTH Italia for commercial use.}
+}
+```
 
-### 🎓 Research & Personal Use: **Free (CC BY-NC 4.0)**
-Free to use and modify for non-commercial research.
+## License
 
-### 💼 Commercial Use: **Paid License Required**
-Contact **RTH Italia** for enterprise deployment and commercial pipelines.
+Model artifacts are released for research and non-commercial use under CC BY-NC 4.0 unless a separate commercial license is granted by RTH Italia.
 
-**[Contact Christian Quintino De Luca](mailto:info@rthitalia.com)**
-
----
-*Created by **Christian Quintino De Luca** (RTH Italia) - Redefining AI Efficiency.*
+See [LICENSE.md](LICENSE.md) for the current project licensing terms.

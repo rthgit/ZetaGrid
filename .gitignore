@@ -1,37 +1,46 @@
-# Binary Models & Data (Too large for GitHub)
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+wandb/
+
+# Local environment
+.env
+.venv/
+venv/
+
+# Separate project / local workspace material
+ECHO AI/
+
+# Heavy model artifacts: publish these on Hugging Face, not GitHub.
 *.npy
 *.pt
 *.bin
+*.safetensors
 *.gguf
 *.qulp
 *.onnx
-*.safetensors
-*.zip
+*.weight
+onnx__*
+emb.weight
+pos_emb.weight
 
-# Folders to Ignore
+# Generated model export directories
 rth_lm_25b_v4_sharded/
 rth_lm_25b_code_sharded/
-cpu_da_v2/
-cpu_da_framework/
-models/
-datasets/
-__pycache__/
-.ipynb_checkpoints/
+onnx_v4_mid3b/
+onnx_code_mid3b/
 
-# System & OS
-.DS_Store
-Thumbs.db
+# Generated reports and local release bundles
+mobile_pre_release_report*.json
+*.zip
 *.log
-*.tmp
-*.obj
-*.o
-*.exe
 
-# Git LFS (if ever used)
-.gitattributes
-
-# Specific ignore
-dummy_genome.npy
-dummy_soul.pt
-zeta50b_sft_step2000.pt
-rth_test_v1.gguf
+# Local deployment/recovery helpers with machine-specific paths.
+deploy_to_git.ps1
+force_deploy.ps1
+fix_git*.ps1
+FAST_RELEASE.ps1
+upload_phase*.ps1
+upload_clean_seed.ps1
+HF_UPLOAD_MASTER.py

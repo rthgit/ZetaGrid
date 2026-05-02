@@ -7,11 +7,6 @@ tags:
 - tcn
 - fractal
 - 25b
-- nlp
-- text-generation
-model_name: RTH-LM (25B)
-base_model: RthItalia/seed-7b
-parameters: 25B
 datasets:
 - custom
 metrics:
@@ -27,7 +22,7 @@ metrics:
 - **Author:** Christian Quintino De Luca (RTH Italia)
 - **Release Date:** February 2026
 - **License:** CC BY-NC 4.0 (Research) / Commercial (Enterprise)
-- **Paper (Figshare):** [https://doi.org/10.6084/m9.figshare.31376560](https://doi.org/10.6084/m9.figshare.31376560)
+- **Paper (Figshare):** https://doi.org/10.6084/m9.figshare.31376560
 
 RTH-LM (25B) is a **Fractal TCN (Temporal Convolutional Network)** Language Model, designed for high-efficiency inference on CPU/Consumer Hardware and massive scalability on GPUs.
 
@@ -106,4 +101,4 @@ ZetaGrid is **NOT** a Transformer. It is a TCN-based organism.
 ## 📜 License
 CC BY-NC 4.0 (Creative Commons Non-Commercial) for Research.
 **Commercial Use:** Requires a license from **RTH Italia** (Cpu-DA Project).
-For inquiries: licensing@rth-italia.com
+For inquiries: info@rthitalia.com
