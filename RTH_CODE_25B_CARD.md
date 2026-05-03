@@ -101,20 +101,31 @@ File availability may differ by release channel. Large artifacts are hosted on H
 
 ## Quickstart
 
-### Python reference path
+### Prerequisites
 
-Download the required Genome and Code Soul artifacts, then run the repository inference script.
+Use the ZetaGrid reference repository and download the Code artifacts from this Hugging Face repository.
 
-```python
-from ZETAGRID_INFERENCE import ZetaGrid25B
-
-model = ZetaGrid25B("zetagrid_25b_production.npy")
-model.load_soul("zeta25b_code_FINAL.pt")
-
-print(model.generate("def quicksort(arr):"))
+```bash
+git clone https://github.com/rthgit/ZetaGrid
+cd ZetaGrid
 ```
 
-The current reference code is research-oriented. You may need to adjust paths, device selection, and checkpoint loading for your environment.
+For the Code release, the relevant artifacts are:
+
+- `zeta25b_code_FINAL.pt` - Code-specialist Soul/checkpoint
+- `zetagrid_25b_production.npy` - shared Genome weight bank
+- `rth_lm_25b_code.gguf` - unified Code GGUF artifact, when using a compatible runtime
+- `config.json` - architecture metadata
+
+### Python reference path
+
+Place `zeta25b_code_FINAL.pt` and `zetagrid_25b_production.npy` in the ZetaGrid working directory, then use the local reference inference script as the starting point:
+
+```bash
+python ZETAGRID_INFERENCE.py
+```
+
+The current Python script is research-oriented. Check the checkpoint selection/path before running and point it explicitly to `zeta25b_code_FINAL.pt` for the Code Soul.
 
 ### GGUF path
 

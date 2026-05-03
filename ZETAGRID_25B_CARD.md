@@ -47,16 +47,19 @@ Unlike Traditional Transformers, ZetaGrid uses a **Gated Causal TCN backbone** w
 ## 🚀 Usage (Inference)
 
 ### Prerequisites
-You need the `cpu_da` framework or the Python inference script.
+Use the ZetaGrid reference repository and download the model artifacts from this Hugging Face repository.
 
 ```bash
 # Clone the repo
-git clone https://github.com/rth-italia/cpu-da
-cd cpu-da
+git clone https://github.com/rthgit/ZetaGrid
+cd ZetaGrid
 ```
 
 ### Running the Model (Python)
-Ensure you have `zeta25b_step15000.pt` (Weights) and `zetagrid_25b_production.npy` (Genome).
+Place the required artifacts in the working directory, or update the paths in the script:
+
+- `zeta25b_step15000.pt` - Soul/checkpoint weights
+- `zetagrid_25b_production.npy` - Genome weight bank
 
 ```python
 import torch
@@ -71,7 +74,7 @@ print(text)
 ```
 
 ### QULP 2-bit Inference (Ultra-Low Memory)
-To run on consumer CPUs with <2GB RAM:
+If using the QULP artifact, download `zeta25b_2bit.qulp` from the model repository and run the matching local inference script when available:
 
 ```bash
 python QULP_INFERENCE.py --model zeta25b_2bit.qulp
@@ -100,5 +103,5 @@ ZetaGrid is **NOT** a Transformer. It is a TCN-based organism.
 
 ## 📜 License
 CC BY-NC 4.0 (Creative Commons Non-Commercial) for Research.
-**Commercial Use:** Requires a license from **RTH Italia** (Cpu-DA Project).
+**Commercial Use:** Requires a license from **RTH Italia**.
 For inquiries: info@rthitalia.com
