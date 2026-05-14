@@ -6,6 +6,8 @@ Targets:
 - text_v2: resume from existing text Soul and continue on FineWeb/FineWeb-Edu bins.
 - code_v2: resume from existing code Soul and continue on larger permissive code bins.
 - math_v1: fork from text Soul and train on math/reasoning bins.
+- text_align_v1/code_align_v1/math_align_v1: low-LR alignment passes.
+- instruction_v1/agentic_v1/orchestrator_v1: functional Souls for SwarmLM routing experiments.
 
 The model stays in the Genome/Soul regime: Genome weights are frozen buffers,
 while LoRA, norms, scales, and embeddings are trainable. FRO is used instead of
@@ -36,6 +38,17 @@ D_MODEL = 4096
 D_FF = 16384
 KERNEL_SIZE = 3
 DILATION_CYCLE = [1, 2, 4, 8, 16, 32, 64, 128]
+SOUL_MODES = [
+    "text_v2",
+    "code_v2",
+    "math_v1",
+    "text_align_v1",
+    "code_align_v1",
+    "math_align_v1",
+    "instruction_v1",
+    "agentic_v1",
+    "orchestrator_v1",
+]
 
 
 def default_base_dir() -> Path:
@@ -49,11 +62,23 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
         "text_v2": "data/text_v2/fineweb_text_v2.bin",
         "code_v2": "data/code_v2/code_v2.bin",
         "math_v1": "data/math_v1/math_v1.bin",
+        "text_align_v1": "data/align_v1/text_align_v1.bin",
+        "code_align_v1": "data/align_v1/code_align_v1.bin",
+        "math_align_v1": "data/align_v1/math_align_v1.bin",
+        "instruction_v1": "data/swarmlm_v1/instruction_v1.bin",
+        "agentic_v1": "data/swarmlm_v1/agentic_v1.bin",
+        "orchestrator_v1": "data/swarmlm_v1/orchestrator_v1.bin",
     }
     init_ckpts = {
         "text_v2": "zeta25b_v4_expanded_FINAL.pt",
         "code_v2": "zeta25b_code_FINAL.pt",
         "math_v1": "zeta25b_v4_expanded_FINAL.pt",
+        "text_align_v1": "checkpoints/text_v2/TEXT_V2_BEST_0p9111.pt",
+        "code_align_v1": "checkpoints/code_v2/CODE_V2_SMOKE.pt",
+        "math_align_v1": "checkpoints/math_v1/MATH_V1_SMOKE.pt",
+        "instruction_v1": "checkpoints/text_align_v1/TEXT_V2_ALIGN.pt",
+        "agentic_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
+        "orchestrator_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
     }
     return {
         "genome": base_dir / "zetagrid_25b_production.npy",
@@ -245,7 +270,7 @@ def write_jsonl(path: Path, row: dict) -> None:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=["text_v2", "code_v2", "math_v1"], default="text_v2")
+    parser.add_argument("--mode", choices=SOUL_MODES, default="text_v2")
     parser.add_argument("--base_dir", type=Path, default=default_base_dir())
     parser.add_argument("--genome", type=Path)
     parser.add_argument("--data", type=Path)
@@ -323,7 +348,7 @@ def main():
         betas=(0.9, 0.98),
         scales=(0.1, 0.01, 0.001),
         alpha=args.fro_alpha,
-        gamma=args.fro_gamma if args.fro_gamma is not None else (0.5 if args.mode != "math_v1" else 0.7),
+        gamma=args.fro_gamma if args.fro_gamma is not None else (0.7 if "math" in args.mode else 0.5),
         weight_decay=0.0,
     )
 
@@ -394,9 +419,13 @@ def main():
             print(f"[SAVE] {ckpt_path}")
             if args.eval_on_save:
                 model.eval()
-                prompt = "The future of efficient AI is" if args.mode == "text_v2" else "def fibonacci(n):\n"
-                if args.mode == "math_v1":
+                prompt = "The future of efficient AI is" if "text" in args.mode or "instruction" in args.mode else "def fibonacci(n):\n"
+                if "math" in args.mode:
                     prompt = "Problem: If x + 3 = 7, then x ="
+                if "agentic" in args.mode:
+                    prompt = "Task: Build a small evaluation plan.\nPlan:\n"
+                if "orchestrator" in args.mode:
+                    prompt = "USER_REQUEST: Write Python code to solve 3x+5=20.\nROUTE:"
                 print(model.generate(prompt, max_new=180)[:400])
                 model.train()
 
