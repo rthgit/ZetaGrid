@@ -66,9 +66,13 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
 class GenomeWeightBank:
     def __init__(self, genome_path: Path, dtype: torch.dtype, device: str):
         print(f"[GENOME] loading {genome_path}")
-        raw = np.load(genome_path)
-        self.data = torch.from_numpy(raw.astype(np.float32)).to(dtype=dtype, device=device)
+        raw = np.load(genome_path, mmap_mode="r")
+        print(f"[GENOME] mmap opened: {raw.shape} {raw.dtype}")
+        print("[GENOME] copying int8 to GPU, then converting on GPU...")
+        raw_cpu = torch.from_numpy(raw)
+        self.data = raw_cpu.to(device=device, non_blocking=False).to(dtype=dtype)
         self.offset = 0
+        del raw_cpu
         del raw
         gc.collect()
         if device == "cuda":
@@ -100,7 +104,7 @@ class RMSNorm(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         rms = torch.rsqrt(x.float().pow(2).mean(-1, keepdim=True) + self.eps)
-        return (x.float() * rms).to(x.dtype) * self.w
+        return ((x.float() * rms).to(x.dtype) * self.w.to(x.dtype)).to(x.dtype)
 
 
 class LoRA(nn.Module):
@@ -258,6 +262,10 @@ def parse_args():
     parser.add_argument("--save_every", type=int, default=250)
     parser.add_argument("--log_every", type=int, default=10)
     parser.add_argument("--grad_clip", type=float, default=1.0)
+    parser.add_argument("--fro_alpha", type=float, default=0.25)
+    parser.add_argument("--fro_gamma", type=float)
+    parser.add_argument("--eval_on_save", action="store_true")
+    parser.add_argument("--write_final", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()
 
@@ -296,9 +304,14 @@ def main():
 
     latest_ckpt = save_dir / "latest.pt"
     resume_source = latest_ckpt if latest_ckpt.exists() else init_ckpt
-    if latest_ckpt.exists():
+    resuming_latest = latest_ckpt.exists()
+    if resuming_latest:
         print(f"[RESUME] using overwrite checkpoint {latest_ckpt}")
     start_step, best_loss = load_init_checkpoint(model, resume_source, device)
+    if not resuming_latest:
+        start_step = 0
+        best_loss = 99.0
+        print("[INIT] reset step/best_loss for a fresh mode run")
     data = load_data(data_path)
     params = [p for p in model.parameters() if p.requires_grad]
     trainable = sum(p.numel() for p in params)
@@ -309,8 +322,8 @@ def main():
         lr=args.lr,
         betas=(0.9, 0.98),
         scales=(0.1, 0.01, 0.001),
-        alpha=0.1,
-        gamma=0.5 if args.mode != "math_v1" else 0.7,
+        alpha=args.fro_alpha,
+        gamma=args.fro_gamma if args.fro_gamma is not None else (0.5 if args.mode != "math_v1" else 0.7),
         weight_decay=0.0,
     )
 
@@ -368,18 +381,52 @@ def main():
 
         if step % args.save_every == 0:
             ckpt_path = save_dir / "latest.pt"
-            torch.save({"step": step, "loss": best_loss, "model": trainable_state_dict(model)}, ckpt_path)
+            torch.save(
+                {
+                    "step": step,
+                    "loss": best_loss,
+                    "mode": args.mode,
+                    "data": str(data_path),
+                    "model": trainable_state_dict(model),
+                },
+                ckpt_path,
+            )
             print(f"[SAVE] {ckpt_path}")
-            model.eval()
-            prompt = "The future of efficient AI is" if args.mode == "text_v2" else "def fibonacci(n):\n"
-            if args.mode == "math_v1":
-                prompt = "Problem: If x + 3 = 7, then x ="
-            print(model.generate(prompt, max_new=180)[:400])
-            model.train()
+            if args.eval_on_save:
+                model.eval()
+                prompt = "The future of efficient AI is" if args.mode == "text_v2" else "def fibonacci(n):\n"
+                if args.mode == "math_v1":
+                    prompt = "Problem: If x + 3 = 7, then x ="
+                print(model.generate(prompt, max_new=180)[:400])
+                model.train()
 
-    final_path = save_dir / "FINAL.pt"
-    torch.save({"step": args.steps, "loss": best_loss, "model": trainable_state_dict(model)}, final_path)
-    print(f"[DONE] final={final_path} best_loss={best_loss:.4f}")
+    latest_path = save_dir / "latest.pt"
+    torch.save(
+        {
+            "step": args.steps,
+            "loss": best_loss,
+            "mode": args.mode,
+            "data": str(data_path),
+            "model": trainable_state_dict(model),
+        },
+        latest_path,
+    )
+    print(f"[DONE] latest={latest_path} best_loss={best_loss:.4f}")
+    if args.write_final:
+        final_path = save_dir / "FINAL.pt"
+        torch.save(
+            {
+                "step": args.steps,
+                "loss": best_loss,
+                "mode": args.mode,
+                "data": str(data_path),
+                "model": trainable_state_dict(model),
+            },
+            final_path,
+        )
+        print(f"[DONE] final={final_path}")
+    else:
+        print("[DONE] FINAL.pt not written automatically; copy latest.pt to FINAL.pt only for release.")
 
 
 if __name__ == "__main__":
