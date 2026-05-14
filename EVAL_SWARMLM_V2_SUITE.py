@@ -39,20 +39,32 @@ SOUL_FILES = {
 
 ROUTE_PROMPTS = {
     "route_code": {
+        "target": "orchestrator_v2",
+        "family": "route",
         "prompt": "<|route|>\nUSER_REQUEST: Write a Python function for fibonacci.\n",
         "expected_route": "code_v2",
+        "markers": ["ROUTE:", "code_v2"],
     },
     "route_math": {
+        "target": "orchestrator_v2",
+        "family": "route",
         "prompt": "<|route|>\nUSER_REQUEST: Solve 3x + 5 = 20.\n",
         "expected_route": "math_v1",
+        "markers": ["ROUTE:", "math_v1"],
     },
     "route_agentic": {
+        "target": "orchestrator_v2",
+        "family": "route",
         "prompt": "<|route|>\nUSER_REQUEST: Create a step-by-step plan to evaluate the model.\n",
         "expected_route": "agentic_v1",
+        "markers": ["ROUTE:", "agentic_v1"],
     },
     "route_complex": {
+        "target": "orchestrator_v2",
+        "family": "route",
         "prompt": "<|route|>\nUSER_REQUEST: Explain the idea, write pseudocode, and solve a small equation.\n",
         "expected_route": "orchestrator_v1",
+        "markers": ["ROUTE:", "orchestrator_v1"],
     },
 }
 
