@@ -141,6 +141,22 @@ python EVAL_SWARMLM_SUITE.py \
 
 For full checkpoint provenance, add `--hash_files`. Hashing the Genome and six 3.6GB Soul checkpoints is slower but useful before publishing a report.
 
+## Align v2
+
+Build broader controlled v2 datasets:
+
+```bash
+python BUILD_ALIGN_V2_DATASETS.py --base_dir /workspace/zetagrid_50b --target_mb 512
+```
+
+First v2 pass should compare directly against SwarmLM v1:
+
+```bash
+python TRAIN_SOUL_V2_FRO_A40.py --mode text_align_v1 --base_dir /workspace/zetagrid_50b --init_ckpt /workspace/zetagrid_50b/checkpoints/text_align_v1/TEXT_V2_ALIGN.pt --data /workspace/zetagrid_50b/data/align_v2/text_align_v2.bin --save_dir /workspace/zetagrid_50b/checkpoints/text_align_v2 --steps 1000 --save_every 250 --seq_len 384 --batch_size 1 --grad_accum 4 --rank 512 --lr 1.5e-6 --fro_gamma 0.6
+```
+
+Use the same pattern for code, math, instruction, agentic, and orchestrator v2. Preserve v2 outputs as named checkpoints only after checking the logs.
+
 ## Logging Requirements
 
 Every run should preserve:
