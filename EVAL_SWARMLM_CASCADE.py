@@ -225,16 +225,20 @@ def run_suite(args: argparse.Namespace) -> None:
         "checkpoints": {},
     }
 
-    print("===== LOAD orchestrator_v2 =====")
     orchestrator_ckpt = base_dir / ORCHESTRATOR
-    orchestrator, orch_meta = load_model(genome, orchestrator_ckpt, device, dtype, args.layers, args.rank)
-    orch_meta["checkpoint_sha256"] = sha256_file(orchestrator_ckpt) if args.hash_files else None
-    manifest["checkpoints"]["orchestrator_v2"] = orch_meta
+    manifest["checkpoints"]["orchestrator_v2"] = {
+        "checkpoint": str(orchestrator_ckpt),
+        "checkpoint_sha256": sha256_file(orchestrator_ckpt) if args.hash_files else None,
+    }
 
     rows = []
     for task in TASKS:
         route_prompt = f"<|route|>\nUSER_REQUEST: {task['request']}\n"
         cascade_t0 = time.time()
+        print("\n===== LOAD orchestrator_v2 =====")
+        orchestrator, orch_meta = load_model(genome, orchestrator_ckpt, device, dtype, args.layers, args.rank)
+        manifest["checkpoints"]["orchestrator_v2"].update(orch_meta)
+
         print(f"\n--- ROUTE {task['name']} ---")
         route_output, route_telemetry = generate(
             orchestrator,
@@ -248,6 +252,9 @@ def run_suite(args: argparse.Namespace) -> None:
         route = extract_route(route_output)
         route_ok = route == task["expected_route"]
         print(route_output[:400].replace("\n", "\\n"))
+
+        del orchestrator
+        cleanup()
 
         selected = ROUTE_TO_SOUL.get(route)
         if selected is None:
@@ -316,7 +323,6 @@ def run_suite(args: argparse.Namespace) -> None:
         del specialist
         cleanup()
 
-    del orchestrator
     cleanup()
 
     metrics = {
