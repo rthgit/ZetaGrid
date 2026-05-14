@@ -128,6 +128,19 @@ python TRAIN_SOUL_V2_FRO_A40.py --mode agentic_v1 --base_dir /workspace/zetagrid
 python TRAIN_SOUL_V2_FRO_A40.py --mode orchestrator_v1 --base_dir /workspace/zetagrid_50b --init_ckpt /workspace/zetagrid_50b/checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt --data /workspace/zetagrid_50b/data/swarmlm_v1/orchestrator_v1.bin --save_dir /workspace/zetagrid_50b/checkpoints/orchestrator_v1 --steps 500 --save_every 250 --seq_len 384 --batch_size 1 --grad_accum 4 --rank 512 --lr 2e-6 --fro_gamma 0.6
 ```
 
+Run scientific smoke evaluation:
+
+```bash
+python EVAL_SWARMLM_SUITE.py \
+  --base_dir /workspace/zetagrid_50b \
+  --out_dir /workspace/zetagrid_50b/reports/swarmlm_v1_suite \
+  --max_new 120 \
+  --temperature 0.25 \
+  --top_k 10
+```
+
+For full checkpoint provenance, add `--hash_files`. Hashing the Genome and six 3.6GB Soul checkpoints is slower but useful before publishing a report.
+
 ## Logging Requirements
 
 Every run should preserve:
