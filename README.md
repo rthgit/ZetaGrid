@@ -52,6 +52,23 @@ RTH-Code 25B is a code-specialist Soul for the RTH-LM / ZetaGrid architecture. I
 
 Code model card draft: [RTH_CODE_25B_CARD.md](RTH_CODE_25B_CARD.md)
 
+### SwarmLM v2
+
+SwarmLM v2 evaluates RTH-LM as a modular Genome/Soul system with centralized routing. A shared frozen Genome hosts multiple rank-512 specialist Souls, while `orchestrator_v2` routes requests to text, code, math, planning, or orchestration behavior.
+
+Current controlled cascade result:
+
+```text
+Route accuracy: 0.875
+Cascade success rate: 0.750
+Specialist marker score average: 0.750
+Peak eval VRAM per loaded Soul: 18.62 GB
+```
+
+The result supports centralized orchestration over specialist Souls. It does not claim robust general-assistant quality or universal self-routing by every Soul.
+
+Updated SwarmLM v2 model-card text: [HF_RTH_LM_SWARMLM_V2_CARD.md](HF_RTH_LM_SWARMLM_V2_CARD.md)
+
 ## Quick Start
 
 The reference Python script expects model artifacts to be present locally. Download the required files from the Hugging Face model repositories before running inference.
