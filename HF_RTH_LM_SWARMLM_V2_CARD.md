@@ -211,6 +211,55 @@ Current observed limitations:
 
 These failures motivate targeted `orchestrator_v3` work, especially for code classification and FRO/text distinction.
 
+## Orchestrator v3b Routing Update
+
+`orchestrator_v3b` is a targeted routing update trained after the v2 cascade evaluation. It keeps the same frozen Genome and the same v2 specialist Souls, but replaces the central routing checkpoint:
+
+```text
+orchestrator_v3b -> selected v2 specialist Soul -> output
+```
+
+Artifact path:
+
+```text
+souls/orchestrator_v3b/ORCHESTRATOR_V3B.pt
+```
+
+Controlled cascade result:
+
+```text
+Tasks: 8
+Route accuracy: 1.000
+Specialist marker score average: 0.875
+Cascade success rate: 0.875
+Average cascade latency: 48.36s
+Average route tokens/sec: 17.72
+Average specialist tokens/sec: 15.72
+Peak route VRAM: 18.60 GB
+Peak specialist VRAM: 18.62 GB
+```
+
+Task-level comparison:
+
+| Task | Expected route | v2 route | v3b route | v3b success |
+| --- | --- | --- | --- | --- |
+| `text_genome_soul` | `text_v2` | `text_v2` | `text_v2` | yes |
+| `text_fro` | `text_v2` | `text_v2` | `text_v2` | no |
+| `code_fibonacci` | `code_v2` | `code_v2` | `code_v2` | yes |
+| `code_prime` | `code_v2` | `text_v2` | `code_v2` | yes |
+| `math_linear` | `math_v1` | `math_v1` | `math_v1` | yes |
+| `math_speed` | `math_v1` | `math_v1` | `math_v1` | yes |
+| `agentic_eval_plan` | `agentic_v1` | `agentic_v1` | `agentic_v1` | yes |
+| `complex_multisoul` | `orchestrator_v1` | `orchestrator_v1` | `orchestrator_v1` | yes |
+
+Interpretation:
+
+```text
+SwarmLM Orchestrator v3b restores full route accuracy on the controlled 8-task cascade suite and corrects the previous code_prime routing failure.
+```
+
+The remaining `text_fro` failure is not routing-related: it routes correctly to `text_v2`, but the generated specialist output does not match the current FRO-specific marker set. This result should therefore be reported as a controlled cascade-suite result, not as evidence of general routing robustness.
+
 ## What This Release Supports
 
 This release supports:
@@ -248,6 +297,10 @@ Use this release for research into:
 Recommended short description:
 
 > RTH-LM / SwarmLM v2 is a modular Genome/Soul research system. A shared frozen Genome supports multiple rank-512 specialist Souls, while `orchestrator_v2` routes controlled requests to specialist executors. In a controlled cascade evaluation, SwarmLM v2 reached 87.5% route accuracy and 75% end-to-end cascade success.
+
+Updated Orchestrator v3b description:
+
+> SwarmLM Orchestrator v3b improves centralized routing over v2 while preserving the same frozen Genome and v2 specialist Souls. On the controlled 8-task cascade suite, v3b reached 100% route accuracy and 87.5% cascade success, correcting the previous `code_prime` routing failure.
 
 ## License
 

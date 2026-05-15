@@ -67,6 +67,17 @@ Peak eval VRAM per loaded Soul: 18.62 GB
 
 The result supports centralized orchestration over specialist Souls. It does not claim robust general-assistant quality or universal self-routing by every Soul.
 
+Targeted Orchestrator v3b routing update:
+
+```text
+Route accuracy: 1.000
+Cascade success rate: 0.875
+Specialist marker score average: 0.875
+Previous code_prime routing failure: corrected
+```
+
+The v3b result keeps the same frozen Genome and v2 specialist Souls, while replacing the central routing checkpoint with `ORCHESTRATOR_V3B.pt`. The remaining observed cascade failure is marker-related on `text_fro`, not a routing failure.
+
 Updated SwarmLM v2 model-card text: [HF_RTH_LM_SWARMLM_V2_CARD.md](HF_RTH_LM_SWARMLM_V2_CARD.md)
 
 ## Quick Start
