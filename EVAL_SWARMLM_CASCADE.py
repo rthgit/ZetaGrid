@@ -3,7 +3,7 @@
 End-to-end SwarmLM cascade evaluation.
 
 Protocol:
-1. Load the shared Genome and orchestrator_v2.
+1. Load the shared Genome and configured Orchestrator checkpoint.
 2. Ask the orchestrator to route a user request.
 3. Load the selected v2 Soul over the same Genome.
 4. Generate the specialist output.
@@ -31,7 +31,7 @@ import torch
 from TRAIN_SOUL_V2_FRO_A40 import GenomeWeightBank, ZetaGridSoul, load_init_checkpoint
 
 
-ORCHESTRATOR = "checkpoints/orchestrator_v2/ORCHESTRATOR_V2.pt"
+DEFAULT_ORCHESTRATOR = "checkpoints/orchestrator_v2/ORCHESTRATOR_V2.pt"
 
 ROUTE_TO_SOUL = {
     "text_v2": ("text_align_v2", "checkpoints/text_align_v2/TEXT_ALIGN_V2.pt"),
@@ -198,13 +198,27 @@ def mean(values: list[float]) -> float:
     return statistics.mean(values) if values else 0.0
 
 
+def resolve_checkpoint(base_dir: Path, checkpoint: Path | None, default_rel: str) -> Path:
+    path = checkpoint or Path(default_rel)
+    return path if path.is_absolute() else base_dir / path
+
+
+def checkpoint_label(path: Path) -> str:
+    parent = path.parent.name
+    stem = path.stem.lower()
+    if parent:
+        return parent
+    return stem
+
+
 def run_suite(args: argparse.Namespace) -> None:
     base_dir = args.base_dir
-    out_dir = args.out_dir or (base_dir / "reports" / "swarmlm_v2_cascade")
+    suite_name = args.suite_name
+    out_dir = args.out_dir or (base_dir / "reports" / suite_name)
     out_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = out_dir / "eval_swarmlm_v2_cascade.jsonl"
+    raw_path = out_dir / f"eval_{suite_name}.jsonl"
     manifest_path = out_dir / "manifest.json"
-    report_path = out_dir / "SWARMLM_V2_CASCADE_REPORT.md"
+    report_path = out_dir / f"{suite_name.upper()}_REPORT.md"
     raw_path.unlink(missing_ok=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -212,7 +226,7 @@ def run_suite(args: argparse.Namespace) -> None:
     genome = args.genome or (base_dir / "zetagrid_25b_production.npy")
 
     manifest = {
-        "suite": "swarmlm_v2_cascade",
+        "suite": suite_name,
         "base_dir": str(base_dir),
         "genome": str(genome),
         "genome_sha256": sha256_file(genome) if args.hash_files else None,
@@ -225,8 +239,9 @@ def run_suite(args: argparse.Namespace) -> None:
         "checkpoints": {},
     }
 
-    orchestrator_ckpt = base_dir / ORCHESTRATOR
-    manifest["checkpoints"]["orchestrator_v2"] = {
+    orchestrator_ckpt = resolve_checkpoint(base_dir, args.orchestrator_ckpt, DEFAULT_ORCHESTRATOR)
+    orchestrator_name = args.orchestrator_name or checkpoint_label(orchestrator_ckpt)
+    manifest["checkpoints"][orchestrator_name] = {
         "checkpoint": str(orchestrator_ckpt),
         "checkpoint_sha256": sha256_file(orchestrator_ckpt) if args.hash_files else None,
     }
@@ -235,9 +250,9 @@ def run_suite(args: argparse.Namespace) -> None:
     for task in TASKS:
         route_prompt = f"<|route|>\nUSER_REQUEST: {task['request']}\n"
         cascade_t0 = time.time()
-        print("\n===== LOAD orchestrator_v2 =====")
+        print(f"\n===== LOAD {orchestrator_name} =====")
         orchestrator, orch_meta = load_model(genome, orchestrator_ckpt, device, dtype, args.layers, args.rank)
-        manifest["checkpoints"]["orchestrator_v2"].update(orch_meta)
+        manifest["checkpoints"][orchestrator_name].update(orch_meta)
 
         print(f"\n--- ROUTE {task['name']} ---")
         route_output, route_telemetry = generate(
@@ -347,11 +362,11 @@ def run_suite(args: argparse.Namespace) -> None:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
     report = [
-        "# SwarmLM v2 Cascade Evaluation",
+        f"# {suite_name} Evaluation",
         "",
         "## Scope",
         "",
-        "This suite evaluates the intended SwarmLM cascade: centralized routing with `orchestrator_v2`, followed by specialist generation with the selected v2 Soul over the same frozen Genome.",
+        f"This suite evaluates the intended SwarmLM cascade: centralized routing with `{orchestrator_name}`, followed by specialist generation with the selected v2 Soul over the same frozen Genome.",
         "",
         "## Artifacts",
         "",
@@ -401,6 +416,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--base_dir", type=Path, default=Path("/workspace/zetagrid_50b"))
     parser.add_argument("--genome", type=Path)
     parser.add_argument("--out_dir", type=Path)
+    parser.add_argument("--suite_name", default="swarmlm_v2_cascade")
+    parser.add_argument("--orchestrator_ckpt", type=Path)
+    parser.add_argument("--orchestrator_name")
     parser.add_argument("--layers", type=int, default=32)
     parser.add_argument("--rank", type=int, default=512)
     parser.add_argument("--max_new_route", type=int, default=80)
