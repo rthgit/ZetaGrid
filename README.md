@@ -78,6 +78,16 @@ Previous code_prime routing failure: corrected
 
 The v3b result keeps the same frozen Genome and v2 specialist Souls, while replacing the central routing checkpoint with `ORCHESTRATOR_V3B.pt`. The remaining observed cascade failure is marker-related on `text_fro`, not a routing failure.
 
+Next controller direction:
+
+```text
+SwarmLM v4 = Orchestrator v3b + FRO-LM Controller
+```
+
+FRO-LM is planned as a lightweight resonance/control Soul for route confidence, ambiguity, safety risk, fallback, multi-Soul composition, and post-output validation. It is a controller layer, not a general assistant or autonomous tool executor.
+
+Controller plan: [FRO_LM_CONTROLLER_V1_PLAN.md](FRO_LM_CONTROLLER_V1_PLAN.md)
+
 Updated SwarmLM v2 model-card text: [HF_RTH_LM_SWARMLM_V2_CARD.md](HF_RTH_LM_SWARMLM_V2_CARD.md)
 
 ## Quick Start

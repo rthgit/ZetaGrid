@@ -8,6 +8,7 @@ Targets:
 - math_v1: fork from text Soul and train on math/reasoning bins.
 - text_align_v1/code_align_v1/math_align_v1: low-LR alignment passes.
 - instruction_v1/agentic_v1/orchestrator_v1: functional Souls for SwarmLM routing experiments.
+- fro_controller_v1: lightweight controller Soul for route confidence, safety, fallback, and validation.
 
 The model stays in the Genome/Soul regime: Genome weights are frozen buffers,
 while LoRA, norms, scales, and embeddings are trainable. FRO is used instead of
@@ -48,6 +49,7 @@ SOUL_MODES = [
     "instruction_v1",
     "agentic_v1",
     "orchestrator_v1",
+    "fro_controller_v1",
 ]
 
 
@@ -68,6 +70,7 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
         "instruction_v1": "data/swarmlm_v1/instruction_v1.bin",
         "agentic_v1": "data/swarmlm_v1/agentic_v1.bin",
         "orchestrator_v1": "data/swarmlm_v1/orchestrator_v1.bin",
+        "fro_controller_v1": "data/swarmlm_v4/fro_controller_v1.bin",
     }
     init_ckpts = {
         "text_v2": "zeta25b_v4_expanded_FINAL.pt",
@@ -79,6 +82,7 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
         "instruction_v1": "checkpoints/text_align_v1/TEXT_V2_ALIGN.pt",
         "agentic_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
         "orchestrator_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
+        "fro_controller_v1": "checkpoints/orchestrator_v3b/ORCHESTRATOR_V3B.pt",
     }
     return {
         "genome": base_dir / "zetagrid_25b_production.npy",
@@ -426,6 +430,8 @@ def main():
                     prompt = "Task: Build a small evaluation plan.\nPlan:\n"
                 if "orchestrator" in args.mode:
                     prompt = "USER_REQUEST: Write Python code to solve 3x+5=20.\nROUTE:"
+                if "fro_controller" in args.mode:
+                    prompt = "<|fro_control|>\nMODE: pre_route\nUSER_REQUEST: Write a Python function.\nORCHESTRATOR_ROUTE: code_v2\nCONTROL:"
                 print(model.generate(prompt, max_new=180)[:400])
                 model.train()
 
