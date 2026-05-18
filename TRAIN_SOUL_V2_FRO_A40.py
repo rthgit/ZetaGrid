@@ -50,6 +50,7 @@ SOUL_MODES = [
     "agentic_v1",
     "orchestrator_v1",
     "fro_controller_v1",
+    "fro_controller_v1b",
 ]
 
 
@@ -71,6 +72,7 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
         "agentic_v1": "data/swarmlm_v1/agentic_v1.bin",
         "orchestrator_v1": "data/swarmlm_v1/orchestrator_v1.bin",
         "fro_controller_v1": "data/swarmlm_v4/fro_controller_v1.bin",
+        "fro_controller_v1b": "data/swarmlm_v4/fro_controller_v1b.bin",
     }
     init_ckpts = {
         "text_v2": "zeta25b_v4_expanded_FINAL.pt",
@@ -83,6 +85,7 @@ def resolve_defaults(mode: str, base_dir: Path) -> dict[str, Path | str]:
         "agentic_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
         "orchestrator_v1": "checkpoints/instruction_v1/INSTRUCTION_V1_SMOKE.pt",
         "fro_controller_v1": "checkpoints/orchestrator_v3b/ORCHESTRATOR_V3B.pt",
+        "fro_controller_v1b": "checkpoints/orchestrator_v3b/ORCHESTRATOR_V3B.pt",
     }
     return {
         "genome": base_dir / "zetagrid_25b_production.npy",

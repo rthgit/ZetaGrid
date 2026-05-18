@@ -193,6 +193,44 @@ python TRAIN_SOUL_V2_FRO_A40.py \
   --fro_gamma 0.6
 ```
 
+If v1 falls back to Orchestrator-style `ROUTE/REASON` output, use v1b. v1b
+switches from JSON-like output to line-oriented controller fields:
+
+```text
+CONFIDENCE: high
+AMBIGUITY: low
+SAFETY: low
+AGENTIC_RISK: none
+ACTION: accept
+FALLBACK_ROUTE: none
+MULTISOUL: false
+REASON: ...
+```
+
+Build v1b dataset:
+
+```bash
+python BUILD_FRO_CONTROLLER_V1B_DATASET.py \
+  --base_dir /workspace/zetagrid_50b \
+  --target_mb 128
+```
+
+Train v1b:
+
+```bash
+python TRAIN_SOUL_V2_FRO_A40.py \
+  --mode fro_controller_v1b \
+  --base_dir /workspace/zetagrid_50b \
+  --steps 600 \
+  --save_every 600 \
+  --seq_len 512 \
+  --batch_size 1 \
+  --grad_accum 4 \
+  --rank 512 \
+  --lr 3e-7 \
+  --fro_gamma 0.6
+```
+
 Release checkpoint path:
 
 ```text
