@@ -1,5 +1,38 @@
 # FRO-LM Controller v1
 
+## Current Result: FRO-LM Small v0
+
+The preferred controller path is now validated as a small standalone model:
+
+```text
+FRO-LM Small v0
+parameters: 44.5M
+initialization: random
+optimizer: FRO
+Genome dependency: none
+checkpoint size: ~178 MB
+build VRAM: ~0.18 GB
+training best loss: 0.0329
+smoke eval: 5/5
+```
+
+Artifacts:
+
+```text
+controllers/fro_lm_small_v0/FRO_LM_SMALL_V0.pt
+reports/fro_lm_small_v0/FRO_LM_SMALL_V0_SMOKE.md
+```
+
+Smoke behaviors covered:
+
+```text
+accept   -> confirm correct route
+fallback -> correct wrong Orchestrator route
+reject   -> flag unsafe agentic request
+split    -> send multi-capability request to Orchestrator
+revise   -> flag weak specialist output
+```
+
 ## Purpose
 
 FRO-LM is a lightweight control model for SwarmLM. It is not intended to replace the Orchestrator or the specialist Souls.

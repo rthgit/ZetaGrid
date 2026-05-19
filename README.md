@@ -78,15 +78,30 @@ Previous code_prime routing failure: corrected
 
 The v3b result keeps the same frozen Genome and v2 specialist Souls, while replacing the central routing checkpoint with `ORCHESTRATOR_V3B.pt`. The remaining observed cascade failure is marker-related on `text_fro`, not a routing failure.
 
-Next controller direction:
+FRO-LM Small controller milestone:
 
 ```text
-SwarmLM v4 = Orchestrator v3b + FRO-LM Controller
+SwarmLM v4 direction = Orchestrator v3b + FRO-LM Small controller
 ```
 
-FRO-LM is planned as a lightweight resonance/control Soul for route confidence, ambiguity, safety risk, fallback, multi-Soul composition, and post-output validation. It is a controller layer, not a general assistant or autonomous tool executor.
+FRO-LM Small v0 is a lightweight standalone byte-level controller trained from scratch with the FRO optimizer. It is not a ZetaGrid Soul, does not load the frozen Genome, and is not initialized from `orchestrator_v3b`.
 
-The preferred FRO-LM path is now a small standalone byte-level controller trained from scratch with the FRO optimizer, rather than another full-size ZetaGrid Soul initialized from `orchestrator_v3b`.
+```text
+Parameters: 44.5M
+Checkpoint size: ~178 MB
+Build VRAM: ~0.18 GB
+Smoke eval: 5/5
+Actions covered: accept, fallback, reject, split, revise
+```
+
+HF artifacts:
+
+```text
+controllers/fro_lm_small_v0/FRO_LM_SMALL_V0.pt
+reports/fro_lm_small_v0/FRO_LM_SMALL_V0_SMOKE.md
+```
+
+FRO-LM Small is a controller layer for route-compatible confidence, fallback, safety, multi-Soul split, and output-revision decisions. It is not a general assistant or autonomous tool executor.
 
 Controller plan: [FRO_LM_CONTROLLER_V1_PLAN.md](FRO_LM_CONTROLLER_V1_PLAN.md)
 

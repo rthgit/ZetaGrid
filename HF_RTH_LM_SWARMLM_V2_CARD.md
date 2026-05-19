@@ -260,6 +260,61 @@ SwarmLM Orchestrator v3b restores full route accuracy on the controlled 8-task c
 
 The remaining `text_fro` failure is not routing-related: it routes correctly to `text_v2`, but the generated specialist output does not match the current FRO-specific marker set. This result should therefore be reported as a controlled cascade-suite result, not as evidence of general routing robustness.
 
+## FRO-LM Small v0 Controller
+
+FRO-LM Small v0 is a lightweight standalone controller for SwarmLM. It is not a ZetaGrid Soul and does not load the frozen Genome. It was trained from random initialization with the FRO optimizer on a route-compatible controller dataset.
+
+Role:
+
+```text
+Orchestrator v3b -> proposes route
+FRO-LM Small     -> confirms/corrects route and emits control action
+Specialist Soul  -> executes selected domain behavior
+```
+
+Artifact paths:
+
+```text
+controllers/fro_lm_small_v0/FRO_LM_SMALL_V0.pt
+reports/fro_lm_small_v0/FRO_LM_SMALL_V0_SMOKE.md
+```
+
+Model summary:
+
+```text
+Parameters: 44.5M
+Initialization: random
+Optimizer: FRO
+Genome dependency: none
+Checkpoint size: ~178 MB
+Build VRAM: ~0.18 GB
+Training best loss: 0.0329
+```
+
+Smoke evaluation:
+
+| Case | Expected behavior | Result |
+| --- | --- | --- |
+| clear code request | `ACTION: accept`, `ROUTE: code_v2` | pass |
+| wrong code-vs-text route | `ACTION: fallback`, `ROUTE: text_v2` | pass |
+| unsafe agentic request | `ACTION: reject`, `RISK: high` | pass |
+| multi-Soul request | `ACTION: split`, `ROUTE: orchestrator_v1` | pass |
+| weak FRO specialist output | `ACTION: revise`, `ROUTE: text_v2` | pass |
+
+Smoke accuracy:
+
+```text
+5/5 = 1.000
+```
+
+Interpretation:
+
+```text
+FRO-LM Small v0 demonstrates that SwarmLM control decisions can be learned by a lightweight standalone FRO-trained controller, separate from the large Genome/Soul stack.
+```
+
+This is a smoke result, not a production safety claim. Broader evaluation is still required for adversarial prompts, tool-use policy, and larger cascade suites.
+
 ## What This Release Supports
 
 This release supports:
@@ -267,6 +322,7 @@ This release supports:
 - same frozen Genome hosting multiple specialized Souls;
 - stronger v2 target specialization compared with v1;
 - centralized Orchestrator routing;
+- lightweight standalone FRO-LM controller smoke validation;
 - end-to-end cascade behavior over selected Souls;
 - reproducible evaluation artifacts with JSONL, manifests, checkpoint metadata, and runtime telemetry;
 - A40-class operation with approximately 18.6 GB peak VRAM per loaded Soul during evaluation.
@@ -279,6 +335,7 @@ This release does not claim:
 - broad benchmark superiority;
 - universal self-routing by every Soul;
 - autonomous multi-Soul composition into a single final response;
+- production-grade safety from FRO-LM Small smoke tests alone;
 - superiority of FRO over AdamW without controlled optimizer ablations;
 - production readiness.
 
@@ -290,6 +347,7 @@ Use this release for research into:
 - centralized routing among specialist adapters/Souls;
 - non-Transformer sequence-model alternatives;
 - controlled evaluation of modular model systems;
+- lightweight controller experiments for confidence, fallback, split, reject, and revise decisions;
 - FRO training telemetry and high-rank Soul dynamics.
 
 ## Citation Language
@@ -301,6 +359,10 @@ Recommended short description:
 Updated Orchestrator v3b description:
 
 > SwarmLM Orchestrator v3b improves centralized routing over v2 while preserving the same frozen Genome and v2 specialist Souls. On the controlled 8-task cascade suite, v3b reached 100% route accuracy and 87.5% cascade success, correcting the previous `code_prime` routing failure.
+
+FRO-LM Small v0 description:
+
+> FRO-LM Small v0 is a 44.5M-parameter standalone byte-level controller trained from scratch with the FRO optimizer. It reached 5/5 on a smoke suite covering accept, fallback, reject, split, and revise control actions, while requiring no Genome load and approximately 0.18 GB VRAM at build time.
 
 ## License
 
