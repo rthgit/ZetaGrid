@@ -159,6 +159,16 @@ def resolve_checkpoint(base_dir: Path, maybe_path: Path | None, default_rel: str
     return path if path.is_absolute() else base_dir / path
 
 
+def route_to_soul(route: str, args: argparse.Namespace) -> tuple[str, Path] | None:
+    if route == "code_v2" and args.code_ckpt:
+        return "code_align_v3", args.code_ckpt if args.code_ckpt.is_absolute() else args.base_dir / args.code_ckpt
+    selected = ROUTE_TO_SOUL.get(route)
+    if selected is None:
+        return None
+    soul_name, soul_rel = selected
+    return soul_name, args.base_dir / soul_rel
+
+
 def checkpoint_exists(path: Path, label: str) -> None:
     if not path.exists():
         raise FileNotFoundError(f"{label} checkpoint not found: {path}")
@@ -296,12 +306,11 @@ def run_suite(args: argparse.Namespace) -> None:
             specialist_marker = marker_score(specialist_output, task["markers"])
             specialist_success = specialist_marker >= args.success_threshold
         else:
-            selected = ROUTE_TO_SOUL.get(controller_route)
+            selected = route_to_soul(controller_route, args)
             if selected is None:
                 execution_skipped = True
             else:
-                selected_soul, soul_rel = selected
-                soul_ckpt = resolve_checkpoint(base_dir, None, soul_rel)
+                selected_soul, soul_ckpt = selected
                 checkpoint_exists(soul_ckpt, selected_soul)
                 del orchestrator
                 cleanup()
@@ -461,6 +470,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--suite_name", default="swarmlm_fro_cascade_v1")
     parser.add_argument("--orchestrator_ckpt", type=Path)
     parser.add_argument("--fro_ckpt", type=Path)
+    parser.add_argument("--code_ckpt", type=Path)
     parser.add_argument("--layers", type=int, default=32)
     parser.add_argument("--rank", type=int, default=512)
     parser.add_argument("--max_new_route", type=int, default=80)
