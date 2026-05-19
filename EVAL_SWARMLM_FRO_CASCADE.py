@@ -6,12 +6,14 @@ Protocol:
 1. Orchestrator v3b proposes a route.
 2. FRO-LM Small validates/corrects the route or rejects/splits the request.
 3. If execution is allowed, load the selected specialist Soul and generate.
+   For orchestrator_v1/split, reuse Orchestrator v3b as the executor.
 4. Report route proposal accuracy, controlled route accuracy, control success,
    specialist marker score, end-to-end success, latency, and VRAM.
 
 This is the full architecture smoke evaluation:
 
 Frozen Genome -> Orchestrator v3b -> FRO-LM Small -> specialist Soul.
+The only Orchestrator checkpoint used is v3b.
 """
 
 from __future__ import annotations
@@ -277,6 +279,22 @@ def run_suite(args: argparse.Namespace) -> None:
         if controller_action == "reject":
             execution_skipped = True
             specialist_success = row["control_success"]
+        elif controller_route == "orchestrator_v1":
+            selected_soul = "orchestrator_v3b"
+            selected_checkpoint = str(orchestrator_ckpt)
+            print("--- EXECUTE SPLIT WITH ORCHESTRATOR V3B ---")
+            specialist_output, specialist_telemetry = generate_soul(
+                orchestrator,
+                task["specialist_prompt"],
+                device,
+                dtype,
+                args.max_new_specialist,
+                args.specialist_temperature,
+                args.specialist_top_k,
+            )
+            specialist_latencies.append(specialist_telemetry["elapsed_sec"])
+            specialist_marker = marker_score(specialist_output, task["markers"])
+            specialist_success = specialist_marker >= args.success_threshold
         else:
             selected = ROUTE_TO_SOUL.get(controller_route)
             if selected is None:
@@ -380,7 +398,7 @@ def run_suite(args: argparse.Namespace) -> None:
         "",
         "## Scope",
         "",
-        "This suite evaluates the full SwarmLM architecture: Orchestrator v3b proposes a route, FRO-LM Small v1 validates or corrects it, and the selected specialist Soul executes over the shared frozen Genome. Unsafe requests should be rejected before specialist execution.",
+        "This suite evaluates the full SwarmLM architecture: Orchestrator v3b proposes a route, FRO-LM Small v1 validates or corrects it, and the selected specialist Soul executes over the shared frozen Genome. For split/orchestrator requests, Orchestrator v3b is reused as the executor; Orchestrator v2 is not used. Unsafe requests should be rejected before specialist execution.",
         "",
         "## Artifacts",
         "",
