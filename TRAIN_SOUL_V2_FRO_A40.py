@@ -152,7 +152,7 @@ class LoRA(nn.Module):
         self.B = nn.Parameter(torch.zeros(out_features, rank))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return F.linear(F.linear(x, self.A), self.B)
+        return F.linear(F.linear(x, self.A.to(x.dtype)), self.B.to(x.dtype))
 
 
 class TCNLayer(nn.Module):
