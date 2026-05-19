@@ -147,50 +147,52 @@ FRO-LM v1 does not replace external policy validation.
 
 ## Training Recommendation
 
-Start from an Orchestrator-adjacent checkpoint:
+Preferred FRO-LM direction:
 
 ```text
-/workspace/zetagrid_50b/checkpoints/orchestrator_v3b/ORCHESTRATOR_V3B.pt
+FRO-LM Small should be trained from scratch as a lightweight standalone controller,
+not as another 949M-parameter Soul initialized from the Orchestrator.
 ```
 
-Train as a new controller Soul:
+The Soul-based v1/v1b line is useful as a negative control:
 
 ```text
-/workspace/zetagrid_50b/checkpoints/fro_controller_v1/FRO_CONTROLLER_V1.pt
+Orchestrator-initialized controller Souls inherit a strong ROUTE/REASON prior
+and tend to resist new control formats.
 ```
 
-Recommended first run:
-
-```text
-steps: 300-600
-seq_len: 512
-lr: 1e-7 to 3e-7
-rank: 512
-dataset: 64-128 MB
-```
-
-Build dataset:
+Build route-compatible controller dataset:
 
 ```bash
-python BUILD_FRO_CONTROLLER_V1_DATASET.py \
+python BUILD_FRO_CONTROLLER_V2_DATASET.py \
   --base_dir /workspace/zetagrid_50b \
-  --target_mb 64
+  --target_mb 128
 ```
 
-Train first controller:
+Train small FRO-LM from scratch:
 
 ```bash
-python TRAIN_SOUL_V2_FRO_A40.py \
-  --mode fro_controller_v1 \
+python TRAIN_FRO_LM_SMALL.py \
   --base_dir /workspace/zetagrid_50b \
-  --steps 300 \
-  --save_every 300 \
+  --data /workspace/zetagrid_50b/data/swarmlm_v4/fro_controller_v2.bin \
+  --save_dir /workspace/zetagrid_50b/checkpoints/fro_lm_small_v0 \
+  --steps 2000 \
+  --save_every 500 \
   --seq_len 512 \
-  --batch_size 1 \
+  --batch_size 8 \
   --grad_accum 4 \
-  --rank 512 \
-  --lr 1e-7 \
+  --layers 12 \
+  --d_model 512 \
+  --d_ff 2048 \
+  --lr 3e-4 \
   --fro_gamma 0.6
+```
+
+Evaluate:
+
+```bash
+python EVAL_FRO_LM_SMALL.py \
+  --ckpt /workspace/zetagrid_50b/checkpoints/fro_lm_small_v0/latest.pt
 ```
 
 If v1 falls back to Orchestrator-style `ROUTE/REASON` output, use v1b. v1b

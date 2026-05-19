@@ -86,6 +86,8 @@ SwarmLM v4 = Orchestrator v3b + FRO-LM Controller
 
 FRO-LM is planned as a lightweight resonance/control Soul for route confidence, ambiguity, safety risk, fallback, multi-Soul composition, and post-output validation. It is a controller layer, not a general assistant or autonomous tool executor.
 
+The preferred FRO-LM path is now a small standalone byte-level controller trained from scratch with the FRO optimizer, rather than another full-size ZetaGrid Soul initialized from `orchestrator_v3b`.
+
 Controller plan: [FRO_LM_CONTROLLER_V1_PLAN.md](FRO_LM_CONTROLLER_V1_PLAN.md)
 
 Updated SwarmLM v2 model-card text: [HF_RTH_LM_SWARMLM_V2_CARD.md](HF_RTH_LM_SWARMLM_V2_CARD.md)
