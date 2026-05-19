@@ -231,6 +231,46 @@ python TRAIN_SOUL_V2_FRO_A40.py \
   --fro_gamma 0.6
 ```
 
+If v1b still emits Orchestrator-style routes instead of controller fields, use
+v2. v2 is route-compatible by design:
+
+```text
+ROUTE: corrected_or_confirmed_route
+ACTION: accept | fallback | split | reject | revise
+CONFIDENCE: high | medium | low
+RISK: low | high
+REASON: ...
+<|endfro|>
+```
+
+This uses the inherited Orchestrator `ROUTE/REASON` prior as an advantage:
+FRO-LM becomes a critic that confirms or corrects the Orchestrator route and
+adds an action.
+
+Build v2 dataset:
+
+```bash
+python BUILD_FRO_CONTROLLER_V2_DATASET.py \
+  --base_dir /workspace/zetagrid_50b \
+  --target_mb 128
+```
+
+Train v2:
+
+```bash
+python TRAIN_SOUL_V2_FRO_A40.py \
+  --mode fro_controller_v2 \
+  --base_dir /workspace/zetagrid_50b \
+  --steps 600 \
+  --save_every 600 \
+  --seq_len 512 \
+  --batch_size 1 \
+  --grad_accum 4 \
+  --rank 512 \
+  --lr 3e-7 \
+  --fro_gamma 0.6
+```
+
 Release checkpoint path:
 
 ```text
