@@ -44,6 +44,31 @@ TASKS = [
         "prompt": "<|instruction|>\nUser: Explain what a Python function is, no code.\nAssistant:",
         "markers": ["named", "reusable", "return"],
     },
+    {
+        "name": "parser_plain",
+        "prompt": "<|instruction|>\nUser: Explain what a parser does.\nAssistant:",
+        "markers": ["structured", "program", "understand"],
+    },
+    {
+        "name": "api_plain",
+        "prompt": "<|instruction|>\nUser: Explain what an API is.\nAssistant:",
+        "markers": ["software", "request", "data"],
+    },
+    {
+        "name": "no_benchmark_warning",
+        "prompt": "<|instruction|>\nUser: Explain why a benchmark is not enough.\nAssistant:",
+        "markers": ["benchmark", "general", "fail"],
+    },
+    {
+        "name": "italian_prime",
+        "prompt": "<|instruction|>\nUser: Spiega che cos'e' un test di primalita', senza codice.\nAssistant:",
+        "markers": ["numero", "primo", "divisibile"],
+    },
+    {
+        "name": "no_genome_drift",
+        "prompt": "<|instruction|>\nUser: If the user asks about a normal concept, should the answer mention Genome/Soul?\nAssistant:",
+        "markers": ["No", "only", "architecture"],
+    },
 ]
 
 
