@@ -161,9 +161,11 @@ def resolve_checkpoint(base_dir: Path, maybe_path: Path | None, default_rel: str
 
 def route_to_soul(route: str, args: argparse.Namespace) -> tuple[str, Path] | None:
     if route == "text_v2" and args.text_ckpt:
-        return "text_align_v3", args.text_ckpt if args.text_ckpt.is_absolute() else args.base_dir / args.text_ckpt
+        path = args.text_ckpt if args.text_ckpt.is_absolute() else args.base_dir / args.text_ckpt
+        return path.parent.name or path.stem.lower(), path
     if route == "code_v2" and args.code_ckpt:
-        return "code_align_v3", args.code_ckpt if args.code_ckpt.is_absolute() else args.base_dir / args.code_ckpt
+        path = args.code_ckpt if args.code_ckpt.is_absolute() else args.base_dir / args.code_ckpt
+        return path.parent.name or path.stem.lower(), path
     selected = ROUTE_TO_SOUL.get(route)
     if selected is None:
         return None
