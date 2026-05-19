@@ -160,6 +160,8 @@ def resolve_checkpoint(base_dir: Path, maybe_path: Path | None, default_rel: str
 
 
 def route_to_soul(route: str, args: argparse.Namespace) -> tuple[str, Path] | None:
+    if route == "text_v2" and args.text_ckpt:
+        return "text_align_v3", args.text_ckpt if args.text_ckpt.is_absolute() else args.base_dir / args.text_ckpt
     if route == "code_v2" and args.code_ckpt:
         return "code_align_v3", args.code_ckpt if args.code_ckpt.is_absolute() else args.base_dir / args.code_ckpt
     selected = ROUTE_TO_SOUL.get(route)
@@ -470,6 +472,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--suite_name", default="swarmlm_fro_cascade_v1")
     parser.add_argument("--orchestrator_ckpt", type=Path)
     parser.add_argument("--fro_ckpt", type=Path)
+    parser.add_argument("--text_ckpt", type=Path)
     parser.add_argument("--code_ckpt", type=Path)
     parser.add_argument("--layers", type=int, default=32)
     parser.add_argument("--rank", type=int, default=512)
