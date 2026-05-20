@@ -21,55 +21,86 @@ from EVAL_SWARMLM_CASCADE import generate, load_model, marker_score
 TASKS = [
     {
         "name": "genome_soul",
+        "profile": "rth",
         "prompt": "<|instruction|>\nUser: Explain the Genome/Soul architecture in simple English.\nAssistant:",
         "markers": ["Genome", "Soul", "shared"],
     },
     {
         "name": "fro_simple",
+        "profile": "rth",
         "prompt": "<|instruction|>\nUser: Summarize Fractal Resonant Optimization in simple English.\nAssistant:",
         "markers": ["gradient", "coherence", "stable"],
     },
     {
         "name": "prime_no_code",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Explain what a primality test is, no code.\nAssistant:",
         "markers": ["prime", "number", "divisible"],
     },
     {
         "name": "sql_group_by_no_query",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Describe what SQL GROUP BY means, no query.\nAssistant:",
         "markers": ["rows", "same", "group"],
     },
     {
         "name": "python_function_no_code",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Explain what a Python function is, no code.\nAssistant:",
         "markers": ["named", "reusable", "return"],
     },
     {
         "name": "parser_plain",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Explain what a parser does.\nAssistant:",
         "markers": ["structured", "program", "understand"],
     },
     {
         "name": "api_plain",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Explain what an API is.\nAssistant:",
         "markers": ["software", "request", "data"],
     },
     {
         "name": "no_benchmark_warning",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Explain why a benchmark is not enough.\nAssistant:",
         "markers": ["benchmark", "general", "fail"],
     },
     {
         "name": "italian_prime",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: Spiega che cos'e' un test di primalita', senza codice.\nAssistant:",
         "markers": ["numero", "primo", "divisibile"],
     },
     {
         "name": "no_genome_drift",
+        "profile": "general",
         "prompt": "<|instruction|>\nUser: If the user asks about a normal concept, should the answer mention Genome/Soul?\nAssistant:",
         "markers": ["No", "only", "architecture"],
     },
 ]
+
+
+def first_assistant_answer(prompt: str, output: str) -> str:
+    if output.startswith(prompt):
+        text = output[len(prompt) :]
+    else:
+        marker = "Assistant:"
+        idx = output.find(marker)
+        text = output[idx + len(marker) :] if idx >= 0 else output
+    stops = ["<|endinstruction|>", "\n<|instruction|>", "\nUser:", "\nAssistant:"]
+    cut = len(text)
+    for stop in stops:
+        idx = text.find(stop)
+        if idx >= 0:
+            cut = min(cut, idx)
+    return text[:cut].strip()
+
+
+def has_format_leak(answer: str) -> bool:
+    leaked = ["ROUTE_REQUESTED:", "<|instruction|>", "<|route|>", "User:", "Assistant:"]
+    return any(token in answer for token in leaked)
 
 
 def parse_args() -> argparse.Namespace:
@@ -84,6 +115,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--temperature", type=float, default=0.15)
     parser.add_argument("--top_k", type=int, default=5)
     parser.add_argument("--success_threshold", type=float, default=0.67)
+    parser.add_argument("--profile", choices=["all", "rth", "general"], default="all")
     return parser.parse_args()
 
 
@@ -105,7 +137,8 @@ def main() -> None:
 
     model, meta = load_model(genome, text_ckpt, device, dtype, args.layers, args.rank)
     rows = []
-    for task in TASKS:
+    selected_tasks = [task for task in TASKS if args.profile == "all" or task["profile"] == args.profile]
+    for task in selected_tasks:
         print(f"\n--- {task['name']} ---")
         output, telemetry = generate(
             model,
@@ -116,21 +149,26 @@ def main() -> None:
             args.temperature,
             args.top_k,
         )
-        score = marker_score(output, task["markers"])
-        success = score >= args.success_threshold
+        answer = first_assistant_answer(task["prompt"], output)
+        score = marker_score(answer, task["markers"])
+        format_leak = has_format_leak(answer)
+        success = score >= args.success_threshold and not format_leak
         row = {
             "task": task["name"],
+            "profile": task["profile"],
             "markers": task["markers"],
             "marker_score": score,
+            "format_leak": format_leak,
             "success": success,
+            "answer": answer,
             "output": output,
             "telemetry": telemetry,
         }
         rows.append(row)
         with raw_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
-        print(f"marker={score:.3f} success={success}")
-        print(output.replace("\n", "\\n")[:500])
+        print(f"marker={score:.3f} leak={format_leak} success={success}")
+        print(answer.replace("\n", "\\n")[:500])
 
     acc = sum(1 for row in rows if row["success"]) / len(rows)
     report_path = out_dir / f"{args.suite_name.upper()}_REPORT.md"
@@ -146,6 +184,7 @@ def main() -> None:
         "## Summary Metrics",
         "",
         f"- Tasks: {len(rows)}",
+        f"- Profile: {args.profile}",
         f"- Success rate: {acc:.3f}",
         f"- Checkpoint step: {meta.get('checkpoint_step')}",
         f"- Checkpoint loss: {meta.get('checkpoint_loss')}",
@@ -154,7 +193,10 @@ def main() -> None:
         "",
     ]
     for row in rows:
-        report.append(f"- {row['task']}: marker={row['marker_score']:.3f} success={row['success']}")
+        report.append(
+            f"- {row['task']}: profile={row['profile']} marker={row['marker_score']:.3f} "
+            f"leak={row['format_leak']} success={row['success']}"
+        )
     report_path.write_text("\n".join(report) + "\n", encoding="utf-8")
     print(f"\n[DONE] raw={raw_path}")
     print(f"[DONE] report={report_path}")
