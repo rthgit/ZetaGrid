@@ -116,6 +116,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--top_k", type=int, default=5)
     parser.add_argument("--success_threshold", type=float, default=0.67)
     parser.add_argument("--profile", choices=["all", "rth", "general"], default="all")
+    parser.add_argument("--score_scope", choices=["answer", "legacy_output"], default="answer")
     return parser.parse_args()
 
 
@@ -150,12 +151,14 @@ def main() -> None:
             args.top_k,
         )
         answer = first_assistant_answer(task["prompt"], output)
-        score = marker_score(answer, task["markers"])
+        scored_text = output if args.score_scope == "legacy_output" else answer
+        score = marker_score(scored_text, task["markers"])
         format_leak = has_format_leak(answer)
-        success = score >= args.success_threshold and not format_leak
+        success = score >= args.success_threshold and (args.score_scope == "legacy_output" or not format_leak)
         row = {
             "task": task["name"],
             "profile": task["profile"],
+            "score_scope": args.score_scope,
             "markers": task["markers"],
             "marker_score": score,
             "format_leak": format_leak,
@@ -167,7 +170,7 @@ def main() -> None:
         rows.append(row)
         with raw_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
-        print(f"marker={score:.3f} leak={format_leak} success={success}")
+        print(f"marker={score:.3f} scope={args.score_scope} leak={format_leak} success={success}")
         print(answer.replace("\n", "\\n")[:500])
 
     acc = sum(1 for row in rows if row["success"]) / len(rows)
@@ -185,6 +188,7 @@ def main() -> None:
         "",
         f"- Tasks: {len(rows)}",
         f"- Profile: {args.profile}",
+        f"- Score scope: {args.score_scope}",
         f"- Success rate: {acc:.3f}",
         f"- Checkpoint step: {meta.get('checkpoint_step')}",
         f"- Checkpoint loss: {meta.get('checkpoint_loss')}",
@@ -195,7 +199,7 @@ def main() -> None:
     for row in rows:
         report.append(
             f"- {row['task']}: profile={row['profile']} marker={row['marker_score']:.3f} "
-            f"leak={row['format_leak']} success={row['success']}"
+            f"scope={row['score_scope']} leak={row['format_leak']} success={row['success']}"
         )
     report_path.write_text("\n".join(report) + "\n", encoding="utf-8")
     print(f"\n[DONE] raw={raw_path}")
