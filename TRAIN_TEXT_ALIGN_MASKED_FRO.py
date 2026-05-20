@@ -90,8 +90,41 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--grad_clip", type=float, default=1.0)
     parser.add_argument("--fro_alpha", type=float, default=0.25)
     parser.add_argument("--fro_gamma", type=float, default=0.5)
+    parser.add_argument("--train_last_layers", type=int, default=8)
+    parser.add_argument("--train_embeddings", action="store_true")
+    parser.add_argument("--train_all", action="store_true")
     parser.add_argument("--seed", type=int, default=606)
     return parser.parse_args()
+
+
+def configure_trainable(model: ZetaGridSoul, n_layers: int, train_last_layers: int, train_embeddings: bool, train_all: bool):
+    if train_all:
+        for param in model.parameters():
+            param.requires_grad = True
+        return
+
+    cutoff = max(0, n_layers - train_last_layers)
+    for name, param in model.named_parameters():
+        param.requires_grad = False
+        if train_embeddings and (name.startswith("emb.") or name.startswith("pos_emb.")):
+            param.requires_grad = True
+            continue
+        if name.startswith("norm_f."):
+            param.requires_grad = True
+            continue
+        if not name.startswith("layers."):
+            continue
+        parts = name.split(".")
+        if len(parts) < 3:
+            continue
+        try:
+            layer_idx = int(parts[1])
+        except ValueError:
+            continue
+        if layer_idx < cutoff:
+            continue
+        if ".lora_" in name or ".norm." in name or name.endswith(".scale"):
+            param.requires_grad = True
 
 
 def main() -> None:
@@ -140,8 +173,15 @@ def main() -> None:
         best_loss = 99.0
         print("[INIT] reset step/best_loss for masked run")
 
+    configure_trainable(model, args.layers, args.train_last_layers, args.train_embeddings, args.train_all)
     params = [p for p in model.parameters() if p.requires_grad]
-    print(f"[MODEL] trainable params: {sum(p.numel() for p in params) / 1e6:.1f}M")
+    if not params:
+        raise ValueError("no trainable parameters selected")
+    print(
+        f"[MODEL] trainable params: {sum(p.numel() for p in params) / 1e6:.1f}M "
+        f"train_all={args.train_all} train_last_layers={args.train_last_layers} "
+        f"train_embeddings={args.train_embeddings}"
+    )
     optimizer = FRO(
         params,
         lr=args.lr,
