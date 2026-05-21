@@ -25,11 +25,20 @@ from fro_optimizer import FRO
 from TRAIN_SOUL_V2_FRO_A40 import GenomeWeightBank, ZetaGridSoul, load_init_checkpoint, trainable_state_dict
 
 
-def encode_example(prompt: str, answer: str, seq_len: int) -> tuple[list[int], list[int]]:
+def encode_example(prompt: str, answer: str, seq_len: int) -> tuple[list[int], list[int]] | None:
     prefix = f"<|instruction|>\nUser: {prompt}\nAssistant: "
     suffix = f"{answer.rstrip()}\n<|endinstruction|>\n"
     prefix_ids = list(prefix.encode("utf-8", errors="ignore"))
     suffix_ids = list(suffix.encode("utf-8", errors="ignore"))
+    if len(suffix_ids) < 8:
+        return None
+    # Long instruction/context fields can otherwise consume the full sequence,
+    # leaving no supervised answer tokens. That makes cross_entropy over all
+    # ignore_index labels return NaN.
+    min_answer_tokens = min(256, max(32, len(suffix_ids)))
+    max_prefix = max(16, seq_len + 1 - min_answer_tokens)
+    if len(prefix_ids) > max_prefix:
+        prefix_ids = prefix_ids[:max_prefix]
     ids = prefix_ids + suffix_ids
     if len(ids) > seq_len + 1:
         ids = ids[: seq_len + 1]
@@ -39,6 +48,8 @@ def encode_example(prompt: str, answer: str, seq_len: int) -> tuple[list[int], l
     answer_start = max(len(prefix_ids) - 1, 0)
     for i in range(answer_start, len(y)):
         labels[i] = y[i]
+    if all(label == -100 for label in labels):
+        return None
     return x, labels
 
 
@@ -47,7 +58,9 @@ def load_examples(path: Path, seq_len: int) -> list[tuple[list[int], list[int]]]
     with path.open("r", encoding="utf-8") as f:
         for line in f:
             row = json.loads(line)
-            examples.append(encode_example(row["prompt"], row["answer"], seq_len))
+            encoded = encode_example(row["prompt"], row["answer"], seq_len)
+            if encoded is not None:
+                examples.append(encoded)
     if not examples:
         raise ValueError(f"empty dataset: {path}")
     return examples
